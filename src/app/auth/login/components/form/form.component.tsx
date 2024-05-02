@@ -5,12 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Eye, EyeOff } from "lucide-react";
 
 import { signInSchema } from "./form.constants";
-import { formProps } from "./form.types";
+import { FormProps, formProps } from "./form.types";
 import { Input } from "@/components/commons/Input/input.component";
 import { useLoginForm } from "./form.hook";
 import { ButtonSection } from "./components/ButtonSection/button-section.component";
 
-export const Form: React.FC = () => {
+export const Form: React.FC<FormProps> = ({ handleShowRegister }) => {
   const {
     control,
     handleSubmit,
@@ -75,7 +75,7 @@ export const Form: React.FC = () => {
       {renderPasswordInput()}
       <ButtonSection
         handleLogin={handleSubmit(actions.handleLogin)}
-        handleRegister={() => console.log("Register")}
+        handleRegister={handleShowRegister}
         handleForgotPassword={() => console.log("senha")}
         isLoading={false}
       />
