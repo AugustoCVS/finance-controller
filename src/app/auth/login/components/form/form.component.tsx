@@ -8,6 +8,7 @@ import { signInSchema } from "./form.constants";
 import { formProps } from "./form.types";
 import { Input } from "@/components/commons/Input/input.component";
 import { useLoginForm } from "./form.hook";
+import { ButtonSection } from "./components/ButtonSection/button-section.component";
 
 export const Form: React.FC = () => {
   const {
@@ -43,9 +44,9 @@ export const Form: React.FC = () => {
           onClick={actions.handleShowPassword}
         >
           {states.showPassword ? (
-            <EyeOff color="#7C7C8A" />
-          ) : (
             <Eye color="#7C7C8A" />
+          ) : (
+            <EyeOff color="#7C7C8A" />
           )}
         </div>
       </div>
@@ -53,7 +54,7 @@ export const Form: React.FC = () => {
   };
 
   return (
-    <form className="flex flex-col gap-4 w-3/4 mt-4 item-center">
+    <form className="flex flex-col item-center gap-4 w-3/4 mt-4">
       <h1 className="text-gray-900 font-semibold text-lg mb-6 text-center">
         Entrar na sua conta
       </h1>
@@ -72,6 +73,12 @@ export const Form: React.FC = () => {
         )}
       />
       {renderPasswordInput()}
+      <ButtonSection
+        handleLogin={handleSubmit(actions.handleLogin)}
+        handleRegister={() => console.log("Register")}
+        handleForgotPassword={() => console.log("senha")}
+        isLoading={false}
+      />
     </form>
   );
 };
