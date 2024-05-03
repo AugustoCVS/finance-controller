@@ -105,7 +105,10 @@ export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
       initial="initial"
       className="fixed flex flex-col items-center justify-center w-2/4 h-full right-0 top-0 bg-white"
     >
-      <form className="flex flex-col item-center gap-4 w-3/4 mt-4">
+      <form
+        className="flex flex-col item-center gap-4 w-3/4 mt-4"
+        onSubmit={handleSubmit(actions.onFormSubmit)}
+      >
         {renderCloseButton()}
         <h1 className="text-center">Registre sua conta</h1>
         <Controller
@@ -140,12 +143,7 @@ export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
         {renderConfirmPasswordInput()}
         <div className="flex flex-col w-full items-center justify-center gap-4">
           <div className="w-3/4 mt-8">
-            <Button
-              type="submit"
-              onClick={handleSubmit(actions.handleRegister)}
-            >
-              Registrar
-            </Button>
+            <Button type="submit">Registrar</Button>
           </div>
         </div>
       </form>
