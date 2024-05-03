@@ -1,3 +1,6 @@
+import { AuthService } from "@/services/auth";
+import { RegisterRequestProps } from "@/services/interfaces/auth";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const useRegisterForm = () => {
@@ -12,9 +15,21 @@ export const useRegisterForm = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleRegister = (): void => {
-    console.log("Login");
-  }
+  const handleRegister = useMutation({
+    mutationFn: (data: RegisterRequestProps) => AuthService.register(data),
+    onError: (err: Error) => {
+      console.error(err);
+    },
+    onSuccess: () => {
+      console.log('success');
+    },
+  });
+
+  const onFormSubmit = (data: RegisterRequestProps) => {
+    handleRegister.mutate(data);
+  };
+
+  console.log(handleRegister.isPending);
 
   return {
     states: {
@@ -24,7 +39,7 @@ export const useRegisterForm = () => {
     actions: {
       handleShowPassword,
       handleShowConfirmPassword,
-      handleRegister,
+      onFormSubmit,
     }
   }
 }
