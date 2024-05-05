@@ -2,14 +2,15 @@
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
-import { Controller, useForm } from "react-hook-form";
-import { Eye, EyeOff, PanelRightClose } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { Eye, EyeOff } from "lucide-react";
 
 import { FormProps, formProps } from "./form.types";
 import { registerSlide, signUpSchema } from "./form.constants";
-import { Input } from "@/components/commons/Input/input.component";
 import { useRegisterForm } from "./form.hook";
 import { Button } from "@/components/commons/Button/button.component";
+import { InputController } from "@/components/commons/InputController/input-controller.component";
+import { CloseButton } from "./components/CloseButton/close-button.component";
 
 export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
   const {
@@ -26,75 +27,46 @@ export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
 
   const renderPasswordInput = () => {
     return (
-      <div className="relative">
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <Input
-              placeholder="Senha"
-              type={states.showPassword ? "text" : "password"}
-              value={field.value}
-              onChange={field.onChange}
-              errorMessage={errors.password?.message}
-              isInvalid={!!errors.password}
-            />
-          )}
-        />
-
-        <div
-          className="absolute right-0 top-6 px-4 border-none bg-transparent cursor-pointer"
-          onClick={actions.handleShowPassword}
-        >
-          {states.showPassword ? (
-            <Eye color="#7C7C8A" />
-          ) : (
-            <EyeOff color="#7C7C8A" />
-          )}
-        </div>
-      </div>
+      <InputController
+        name="password"
+        control={control}
+        placeholder="Senha"
+        type={states.showPassword ? "text" : "password"}
+        errorMessage={errors.password?.message}
+        isInvalid={!!errors.password}
+        onClick={actions.handleShowPassword}
+      >
+        {states.showPassword ? (
+          <Eye color="#7C7C8A" />
+        ) : (
+          <EyeOff color="#7C7C8A" />
+        )}
+      </InputController>
     );
   };
 
   const renderConfirmPasswordInput = () => {
     return (
-      <div className="relative">
-        <Controller
+      <div>
+        <InputController
           name="confirm_password"
           control={control}
-          render={({ field }) => (
-            <Input
-              placeholder="Confirme sua senha"
-              type={states.showConfirmPassword ? "text" : "password"}
-              value={field.value}
-              onChange={field.onChange}
-              errorMessage={errors.confirm_password?.message}
-              isInvalid={!!errors.confirm_password}
-            />
-          )}
-        />
-
-        <div
-          className="absolute right-0 top-6 px-4 border-none bg-transparent cursor-pointer"
+          placeholder="Confirme sua senha"
+          type={states.showConfirmPassword ? "text" : "password"}
+          errorMessage={errors.confirm_password?.message}
+          isInvalid={!!errors.confirm_password}
           onClick={actions.handleShowConfirmPassword}
         >
-          {states.showPassword ? (
+          {states.showConfirmPassword ? (
             <Eye color="#7C7C8A" />
           ) : (
             <EyeOff color="#7C7C8A" />
           )}
-        </div>
-      </div>
-    );
-  };
-
-  const renderCloseButton = () => {
-    return (
-      <div
-        className="absolute left-0 top-0 p-4 cursor-pointer"
-        onClick={handleCloseRegister}
-      >
-        <PanelRightClose color="#7C7C8A" />
+        </InputController>
+        <p className="text-sm pt-4 text-gray-500 text-center">
+          A senha deve conter letras maiúsculas e minúsculas, números e um
+          caractere especial.
+        </p>
       </div>
     );
   };
@@ -111,35 +83,25 @@ export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
         className="flex flex-col item-center gap-4 w-3/4 mt-4"
         onSubmit={handleSubmit(actions.onFormSubmit)}
       >
-        {renderCloseButton()}
+        <CloseButton onClick={handleCloseRegister} />
         <h1 className="text-center">Registre sua conta</h1>
-        <Controller
+
+        <InputController
           name="name"
           control={control}
-          render={({ field }) => (
-            <Input
-              placeholder="Nome"
-              type="text"
-              value={field.value}
-              onChange={field.onChange}
-              errorMessage={errors.name?.message}
-              isInvalid={!!errors.name}
-            />
-          )}
+          placeholder="Nome"
+          type="text"
+          errorMessage={errors.name?.message}
+          isInvalid={!!errors.name}
         />
-        <Controller
+
+        <InputController
           name="email"
           control={control}
-          render={({ field }) => (
-            <Input
-              placeholder="Email"
-              type="text"
-              value={field.value}
-              onChange={field.onChange}
-              errorMessage={errors.email?.message}
-              isInvalid={!!errors.email}
-            />
-          )}
+          placeholder="Email"
+          type="text"
+          errorMessage={errors.email?.message}
+          isInvalid={!!errors.email}
         />
         {renderPasswordInput()}
         {renderConfirmPasswordInput()}

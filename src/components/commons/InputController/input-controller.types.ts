@@ -3,7 +3,7 @@ export type InputControllerProps = {
   name: string;
   placeholder: string;
   type: string;
-  errorMessage: string;
+  errorMessage: string | undefined;
   isInvalid: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
