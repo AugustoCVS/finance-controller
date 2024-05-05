@@ -28,3 +28,6 @@ export const signUpSchema = yup.object().shape({
     .oneOf([yup.ref("password")], "As senhas devem ser iguais")
     .required("A confirmação de senha é obrigatória"),
 });
+
+export const SUCCESS_MESSAGE = "Usuário cadastrado com sucesso!";
+export const ERROR_MESSAGE = "Erro ao cadastrar usuário!";
