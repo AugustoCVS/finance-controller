@@ -20,7 +20,9 @@ export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
     resolver: yupResolver(signUpSchema),
   });
 
-  const { actions, states } = useRegisterForm();
+  const { actions, states } = useRegisterForm({
+    handleCloseRegister,
+  });
 
   const renderPasswordInput = () => {
     return (
