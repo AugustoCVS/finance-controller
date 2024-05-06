@@ -3,14 +3,13 @@ import { ButtonSectionProps } from "./button-section.types";
 
 export const ButtonSection: React.FC<ButtonSectionProps> = ({
   handleForgotPassword,
-  handleLogin,
   handleRegister,
   isLoading,
 }) => {
   return (
     <div className="flex flex-col w-full items-center justify-center gap-4">
       <div className="w-3/4 mt-8">
-        <Button type="submit" onClick={handleLogin} loading={isLoading}>
+        <Button type="submit" loading={isLoading}>
           Entrar
         </Button>
       </div>
