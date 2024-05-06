@@ -9,7 +9,7 @@ export const AuthService = {
   },
 
   login: async ({email, password}: LoginRequestProps) => {
-    const res = await api.post<LoginResponseProps>("/user/login", {email, password});
+    const res = await api.post<LoginResponseProps>("/users/login", {email, password});
 
     return res.data;
   }
