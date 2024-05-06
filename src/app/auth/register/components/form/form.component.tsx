@@ -11,6 +11,7 @@ import { useRegisterForm } from "./form.hook";
 import { Button } from "@/components/commons/Button/button.component";
 import { InputController } from "@/components/commons/InputController/input-controller.component";
 import { CloseButton } from "./components/CloseButton/close-button.component";
+import { ButtonSection } from "./components/ButtonSection/button-section.component";
 
 export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
   const {
@@ -105,11 +106,7 @@ export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
         />
         {renderPasswordInput()}
         {renderConfirmPasswordInput()}
-        <div className="flex flex-col w-full items-center justify-center gap-4">
-          <div className="w-3/4 mt-8">
-            <Button type="submit">Registrar</Button>
-          </div>
-        </div>
+        <ButtonSection isLoading={actions.handleRegister.isPending} />
       </form>
     </motion.div>
   );
