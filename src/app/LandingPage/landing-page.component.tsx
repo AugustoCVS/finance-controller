@@ -12,11 +12,11 @@ export default function LandingPage() {
 
   return (
     <div className="flex items-center justify-center w-screen h-screen">
-      <div className="w-2/4 bg-gray-700 h-screen flex items-center justify-center">
+      <div className="w-2/4 bg-gray-700 h-screen hidden md:flex items-center justify-center">
         <CircleDollarSign size={120} color="#E1E1E6" />
       </div>
 
-      <div className="w-2/4 h-screen flex items-center justify-center">
+      <div className="w-3/4 md:w-2/4 h-screen flex items-center justify-center">
         <Login handleShowRegister={actions.handleToggleRegister} />
       </div>
 

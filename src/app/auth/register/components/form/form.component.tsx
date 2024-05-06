@@ -78,7 +78,7 @@ export const Form: React.FC<FormProps> = ({ handleCloseRegister }) => {
       animate="enter"
       exit="exit"
       initial="initial"
-      className="fixed flex flex-col items-center justify-center w-2/4 h-full right-0 top-0 bg-white"
+      className="fixed flex flex-col items-center justify-center w-full md:w-2/4 h-full right-0 top-0 bg-white"
     >
       <form
         className="flex flex-col item-center gap-4 w-3/4 mt-4"
