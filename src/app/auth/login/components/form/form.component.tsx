@@ -61,7 +61,7 @@ export const Form: React.FC<FormProps> = ({ handleShowRegister }) => {
       <ButtonSection
         handleRegister={handleShowRegister}
         handleForgotPassword={actions.handleChangePassword}
-        isLoading={false}
+        isLoading={actions.handleLogin.isPending}
       />
     </form>
   );
