@@ -1,17 +1,26 @@
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+
 import { AuthService } from "@/services/auth";
 import { LoginRequestProps } from "@/services/interfaces/auth";
 import { MessageUtils } from "@/utils/messages";
-import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
-import { SUCCESS_MESSAGE } from "./form.constants";
+import { ERROR_MESSAGE, SUCCESS_MESSAGE } from "./form.constants";
 import { saveUserInfoOnSessionCookies } from "@/utils/auth";
 
 export const useLoginForm = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleShowPassword = (): void => {
     setShowPassword(!showPassword);
   };
+
+  const navigateToHome = (): void => {
+    setTimeout(() => {
+      router.push("/home");
+    }, 100)
+  }
 
   const handleLogin = useMutation({
     mutationFn: async (data: LoginRequestProps) =>
@@ -19,9 +28,9 @@ export const useLoginForm = () => {
         email: data.email,
         password: data.password,
       }),
-    onError: (error) => {
+    onError: () => {
       MessageUtils.handleSendToast({
-        message: error.message,
+        message: ERROR_MESSAGE,
         type: "error",
       });
     },
@@ -31,6 +40,7 @@ export const useLoginForm = () => {
         type: "success",
       });
       saveUserInfoOnSessionCookies(res);
+      navigateToHome();
     },
   });
 
