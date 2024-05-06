@@ -52,6 +52,7 @@ export const useRegisterForm = ({ handleCloseRegister }: FormProps) => {
       handleShowPassword,
       handleShowConfirmPassword,
       onFormSubmit,
+      handleRegister,
     },
   };
 };
