@@ -1,17 +1,16 @@
 import { Home, LayoutDashboard, Wallet } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
 import { OptionsList } from "./options.constants";
+import { useOptions } from "./options.hook";
 
 export const Options: React.FC = () => {
-  const router = useRouter();
-  const pathName = usePathname();
+  const { actions } = useOptions();
 
   const renderIcon: Record<string, JSX.Element> = {
     home: (
       <Home
         color="white"
         className="w-6 h-6"
-        onClick={() => router.push("/home")}
+        onClick={() => actions.handleNavigate({ screenName: "home" })}
       />
     ),
     resumo: <LayoutDashboard color="white" className="w-6 h-6" />,
@@ -19,14 +18,9 @@ export const Options: React.FC = () => {
       <Wallet
         color="white"
         className="w-6 h-6"
-        onClick={() => router.push("/contas")}
+        onClick={() => actions.handleNavigate({ screenName: "contas" })}
       />
     ),
-  };
-
-  const backgroundColor = (option: string) => {
-    const transformPath = pathName.split("/")[1];
-    return transformPath === option ? "bg-gray-800" : "";
   };
 
   return (
@@ -38,7 +32,9 @@ export const Options: React.FC = () => {
               key={option.id}
               className={`flex flex-col text-sm justify-center
                items-center h-16 text-gray-100 cursor-pointer p-1 hover:bg-gray-900 rounded
-               ${backgroundColor(option.title.toLowerCase())}
+               ${actions.handleChangeBackgroundColor(
+                 option.title.toLowerCase()
+               )}
                `}
             >
               {renderIcon[option.icon]}
