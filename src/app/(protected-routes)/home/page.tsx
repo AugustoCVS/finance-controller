@@ -3,6 +3,7 @@
 import React from "react";
 import { useHome } from "./home.hook";
 import { BalanceCards } from "./components/BalanceCards/balance-cards.component";
+import { ButtonSection } from "./components/BalanceCards/components/ButtonSection/button-section.component";
 
 export default function HomePage() {
   const { states } = useHome();
@@ -27,7 +28,8 @@ export default function HomePage() {
 
   return (
     <section className="w-full h-screen flex flex-col items-center bg-gray-800">
-      <div className="flex items-center justify-around mt-[-4rem] gap-12">
+      <ButtonSection />
+      <div className="flex items-center justify-around mt-[-3rem] gap-12">
         {BalanceList.map((balance) => {
           return (
             <BalanceCards
