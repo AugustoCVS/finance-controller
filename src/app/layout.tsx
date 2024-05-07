@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "@/styles/globals.css";
 import { ReduxStore } from "@/providers/ReduxStore";
 import { ReactQuery } from "@/providers/ReactQuery";
-import { Menu } from "./(protected-routes)/home/components/Menu/menu.component";
+import { Menu } from "@/components/layout/Menu/menu.component";
 
 const roboto = Roboto_Mono({ subsets: ["latin"] });
 
