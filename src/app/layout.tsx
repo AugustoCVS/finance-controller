@@ -8,6 +8,7 @@ import "@/styles/globals.css";
 import { ReduxStore } from "@/providers/ReduxStore";
 import { ReactQuery } from "@/providers/ReactQuery";
 import { Menu } from "@/components/layout/Menu/menu.component";
+import { Header } from "@/components/layout/Header/header.component";
 
 const roboto = Roboto_Mono({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ReduxStore>
           <ReactQuery>
             <Menu />
+            <Header />
             {children}
             <ToastContainer />
           </ReactQuery>
