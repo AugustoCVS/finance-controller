@@ -1,6 +1,8 @@
 import axios from "axios";
 import { responseInterceptor } from "./interceptors/ResponseInterceptor";
-import { errorInterceptor } from "./interceptors/ErrorInterceptor";
+import { requestInterceptor } from "./interceptors/RequestInterceptor";
+import { AuthService } from "./auth";
+import { getRefreshTokenId, saveUserInfoOnSessionCookies } from "@/utils/auth";
 
 //TODO: ADD BASE URL NO .ENV
 const BASE_URL = "http://localhost:3001";
@@ -13,9 +15,31 @@ const api = axios.create({
   },
 });
 
+api.interceptors.request.use(
+  async (config) => requestInterceptor(config),
+  (error) => Promise.reject(error)
+);
+
 api.interceptors.response.use(
-    (response) => responseInterceptor(response),
-    (error) => errorInterceptor(error)
+  (response) => responseInterceptor(response),
+  async (error) => {
+    const prevReq = error.config;
+    const refreshTokenId = await getRefreshTokenId();
+
+    if (error.response?.status === 401 && !prevReq._retry) {
+      prevReq._retry = true;
+
+      await AuthService.refreshToken({
+        refreshTokenId: refreshTokenId,
+      }).then((res) => {
+        prevReq.headers["Authorization"] = `Bearer ${res.token}`;
+        saveUserInfoOnSessionCookies(res);
+      });
+
+      return api.request(prevReq);
+    }
+    return Promise.reject(error);
+  }
 );
 
 export { api };
