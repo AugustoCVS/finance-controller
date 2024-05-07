@@ -1,17 +1,15 @@
 "use server";
 
 import { LoginResponseProps } from "@/services/interfaces/auth";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
 const cookiesStore = cookies();
 
 const saveUserInfoOnSessionCookies = (data: LoginResponseProps): void => {
-  cookiesStore.set("@token", data.token, { httpOnly: true, secure: true });
-  cookiesStore.set("@refreshTokenId", data.refreshToken.id, {
-    httpOnly: true,
-    secure: true,
-  });
+  cookiesStore.set("@token", data.token);
+  if (data.refreshToken) {
+    cookiesStore.set("@refreshTokenId", data.refreshToken.id);
+  }
 };
 
 const removeUserInfoOnSessionCookies = (): void => {
@@ -19,12 +17,12 @@ const removeUserInfoOnSessionCookies = (): void => {
   cookiesStore.delete("@refreshTokenId");
 };
 
-const getToken = (): RequestCookie | undefined => {
-  return cookiesStore.get("@token");
+const getToken = async (): Promise<string | undefined> => {
+  return cookiesStore.get("@token")?.value;
 };
 
-const getRefreshTokenId = (): RequestCookie | undefined => {
-  return cookiesStore.get("@refreshTokenId");
+const getRefreshTokenId = async (): Promise<string | undefined> => {
+  return cookiesStore.get("@refreshTokenId")?.value;
 };
 
 export {
