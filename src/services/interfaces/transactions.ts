@@ -28,6 +28,7 @@ export type TransactionsProps = {
   category: TransactionCategory;
   type: TransactionType;
   accountId: string;
+  accountName: string;
   userId: string;
   createdAt: Date;
   updatedAt: Date;
