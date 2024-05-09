@@ -9,6 +9,7 @@ import { ReduxStore } from "@/providers/ReduxStore";
 import { ReactQuery } from "@/providers/ReactQuery";
 import { Menu } from "@/components/layout/Menu/menu.component";
 import { Header } from "@/components/layout/Header/header.component";
+import { UserInfo } from "@/providers/User";
 
 const roboto = Roboto_Mono({ subsets: ["latin"] });
 
@@ -27,10 +28,12 @@ export default function RootLayout({
       <body className={roboto.className}>
         <ReduxStore>
           <ReactQuery>
-            <Menu />
-            <Header />
-            {children}
-            <ToastContainer />
+            <UserInfo>
+              <Menu />
+              <Header />
+              {children}
+              <ToastContainer />
+            </UserInfo>
           </ReactQuery>
         </ReduxStore>
       </body>
