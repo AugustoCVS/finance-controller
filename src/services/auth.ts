@@ -34,10 +34,4 @@ export const AuthService = {
 
     return res.data;
   },
-
-  profile: async () => {
-    const res = await api.get("/users/profile");
-
-    return res.data;
-  }
 };
