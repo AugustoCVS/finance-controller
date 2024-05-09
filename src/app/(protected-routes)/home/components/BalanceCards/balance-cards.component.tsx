@@ -19,7 +19,7 @@ export const BalanceCards: React.FC<BalanceCardsProps> = ({
     return (
       <div className="w-full flex flex-col">
         {Array.from({ length: 1 }).map((_, index) => (
-          <div className="flex flex-col rounded-md gap-3">
+          <div className="flex flex-col rounded-md gap-3" key={index}>
             <SkeletonComponent
               key={index}
               height={128}
@@ -33,6 +33,7 @@ export const BalanceCards: React.FC<BalanceCardsProps> = ({
       </div>
     );
   }
+
   return (
     <div
       className={`flex flex-col w-80 h-32 ${backgroundColor()} rounded-md gap-3 p-6`}
