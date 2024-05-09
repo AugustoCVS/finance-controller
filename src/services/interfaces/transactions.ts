@@ -5,8 +5,8 @@ export type MetaData = {
 };
 
 export enum TransactionType {
-  INCOME = "income",
-  OUTCOME = "outcome",
+  INCOME = "INCOME",
+  OUTCOME = "OUTCOME",
 }
 
 export enum TransactionCategory {
