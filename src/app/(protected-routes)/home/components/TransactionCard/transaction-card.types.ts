@@ -4,7 +4,6 @@ export type TransactionProps = {
   accountName: string;
   category: string;
   date: Date;
-  isLoading: boolean;
   edit: () => void;
   remove: () => void;
 }
