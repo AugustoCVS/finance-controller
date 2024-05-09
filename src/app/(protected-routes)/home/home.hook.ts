@@ -10,6 +10,7 @@ import { setTransactions } from "@/redux/slices/Transactions/transactions.slice"
 export const useHome = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
+  const transactions = useSelector((state: RootState) => state.transactions);
 
   const handleGetTransactions = async (): Promise<void> => {
     await TransactionsService.getTransactions({
@@ -38,7 +39,7 @@ export const useHome = () => {
   return {
     states: {
       isLoading,
-      user,
+      transactions,
     },
   };
 };
