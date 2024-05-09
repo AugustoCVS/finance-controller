@@ -12,6 +12,10 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
+  if(isPublicRoute && token) {
+    return NextResponse.redirect(new URL("/home", req.nextUrl));
+  }
+
   return NextResponse.next();
 }
 
