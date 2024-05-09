@@ -3,6 +3,7 @@ import { Roboto_Mono } from "next/font/google";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { NextUIProvider } from "@nextui-org/react";
 
 import "@/styles/globals.css";
 import { ReduxStore } from "@/providers/ReduxStore";
@@ -28,12 +29,14 @@ export default function RootLayout({
       <body className={roboto.className}>
         <ReduxStore>
           <ReactQuery>
-            <UserInfo>
-              <Menu />
-              <Header />
-              {children}
-              <ToastContainer />
-            </UserInfo>
+            <NextUIProvider>
+              <UserInfo>
+                <Menu />
+                <Header />
+                {children}
+                <ToastContainer />
+              </UserInfo>
+            </NextUIProvider>
           </ReactQuery>
         </ReduxStore>
       </body>
