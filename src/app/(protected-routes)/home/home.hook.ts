@@ -6,6 +6,7 @@ import { MessageUtils } from "@/utils/messages";
 import { ERROR_MESSAGE } from "./home.constants";
 import { TransactionsService } from "@/services/transactions";
 import { setTransactions } from "@/redux/slices/Transactions/transactions.slice";
+import { useState } from "react";
 
 export const useHome = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export const useHome = () => {
     });
   };
 
-  const { isLoading } = useQuery({
+  const { isPending } = useQuery({
     queryKey: ["getBalance"],
     queryFn: async () => {
       await handleGetTransactions()
@@ -38,7 +39,7 @@ export const useHome = () => {
 
   return {
     states: {
-      isLoading,
+      isPending,
       transactions,
     },
   };
