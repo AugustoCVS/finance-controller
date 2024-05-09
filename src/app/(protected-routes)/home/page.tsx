@@ -7,6 +7,7 @@ import { BalanceCards } from "./components/BalanceCards/balance-cards.component"
 import { ButtonSection } from "./components/BalanceCards/components/ButtonSection/button-section.component";
 import { useSummary } from "@/utils/summary";
 import { TransactionCard } from "./components/TransactionCard/transaction-card.component";
+import { SkeletonTransactionCard } from "./components/SkeletonTransactionCard/skeleton-transaction-card.component";
 
 export default function HomePage() {
   const { states } = useHome();
@@ -22,13 +23,14 @@ export default function HomePage() {
               key={balance.id}
               balance={balance.value}
               title={balance.title}
-              isLoading={states.isLoading}
+              isLoading={states.isPending}
             />
           );
         })}
       </div>
 
       <div className="flex flex-col items-center gap-1 mt-8 w-full px-12">
+        <SkeletonTransactionCard isLoading={states.isPending} />
         {states.transactions.map((transaction) => {
           return (
             <TransactionCard
@@ -38,7 +40,6 @@ export default function HomePage() {
               accountName={transaction.accountName}
               category={transaction.category}
               date={transaction.date}
-              isLoading={states.isLoading}
               edit={() => {}}
               remove={() => {}}
             />
