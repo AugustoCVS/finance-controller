@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+
 import { useHome } from "./home.hook";
 import { BalanceCards } from "./components/BalanceCards/balance-cards.component";
 import { ButtonSection } from "./components/BalanceCards/components/ButtonSection/button-section.component";
@@ -37,6 +38,7 @@ export default function HomePage() {
               accountName={transaction.accountName}
               category={transaction.category}
               date={transaction.date}
+              isLoading={states.isLoading}
               edit={() => {}}
               remove={() => {}}
             />
