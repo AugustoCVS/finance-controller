@@ -16,20 +16,23 @@ export const BalanceCards: React.FC<BalanceCardsProps> = ({
   };
 
   if (isLoading) {
-    {
-      Array.from({ length: 3 }).map((_, index) => {
-        <SkeletonComponent
-          key={index}
-          height={128}
-          width={320}
-          baseColor="#EEEEEE"
-          borderRadius={6}
-          highlightColor="#BFBFBF"
-        />;
-      });
-    }
+    return (
+      <div className="w-full flex flex-col">
+        {Array.from({ length: 1 }).map((_, index) => (
+          <div className="flex flex-col rounded-md gap-3">
+            <SkeletonComponent
+              key={index}
+              height={128}
+              width={320}
+              baseColor="#323238"
+              borderRadius={6}
+              highlightColor="#29292E"
+            />
+          </div>
+        ))}
+      </div>
+    );
   }
-
   return (
     <div
       className={`flex flex-col w-80 h-32 ${backgroundColor()} rounded-md gap-3 p-6`}
