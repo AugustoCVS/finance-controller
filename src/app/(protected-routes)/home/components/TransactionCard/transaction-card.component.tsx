@@ -17,7 +17,7 @@ export const TransactionCard: React.FC<TransactionProps> = ({
   if (isLoading) {
     return (
       <div className="w-full flex flex-col">
-        {Array.from({ length: 4 }).map((_, index) => (
+        {Array.from({ length: 1 }).map((_, index) => (
           <div className="w-full">
             <SkeletonComponent
               key={index}
