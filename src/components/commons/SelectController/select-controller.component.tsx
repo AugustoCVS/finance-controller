@@ -8,11 +8,13 @@ export const SelectController: React.FC<SelectControllerProps> = ({
   isInvalid,
   name,
   children,
+  defaultValue,
 }) => {
   return (
     <Controller
       name={name}
       control={control}
+      defaultValue={defaultValue}
       render={({ field }) => (
         <Select
           value={field.value}

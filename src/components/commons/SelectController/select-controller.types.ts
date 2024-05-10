@@ -4,4 +4,5 @@ export type SelectControllerProps = {
   errorMessage: string | undefined;
   isInvalid: boolean;
   children: React.ReactNode;
+  defaultValue?: string;
 };

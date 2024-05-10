@@ -11,6 +11,7 @@ export const InputController: React.FC<InputControllerProps> = ({
   type,
   children,
   isSecondInput,
+  defaultValue,
   onClick,
 }) => {
   return (
@@ -18,6 +19,7 @@ export const InputController: React.FC<InputControllerProps> = ({
       <Controller
         name={name}
         control={control}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <Input
             placeholder={placeholder}
