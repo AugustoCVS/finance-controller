@@ -4,6 +4,8 @@ import { NewTransactionSchema } from './modal-new-transaction.constants';
 export type ModalNewTransactionProps = {
   isOpen: boolean;
   onOpenChange: () => void;
+  handleGetTransactions: () => Promise<void>;
+  userId: string;
 }
 
 export type formProps = yup.InferType<typeof NewTransactionSchema>;
@@ -13,6 +15,4 @@ export interface FormField {
   name: string;
   title: string;
   type: string;
-  options?: { id: number; value: string; label: string }[];
-  loading?: boolean;
 }
