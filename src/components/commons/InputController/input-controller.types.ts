@@ -5,6 +5,7 @@ export type InputControllerProps = {
   type: string;
   errorMessage: string | undefined;
   isInvalid: boolean;
+  isSecondInput?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
 };

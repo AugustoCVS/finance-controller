@@ -10,6 +10,7 @@ export const InputController: React.FC<InputControllerProps> = ({
   placeholder,
   type,
   children,
+  isSecondInput,
   onClick,
 }) => {
   return (
@@ -25,6 +26,7 @@ export const InputController: React.FC<InputControllerProps> = ({
             onChange={field.onChange}
             errorMessage={errorMessage}
             isInvalid={isInvalid}
+            isSecondInput={isSecondInput}
           />
         )}
       />
