@@ -10,14 +10,14 @@ export enum TransactionType {
 }
 
 export enum TransactionCategory {
-  SALARIO = "Salário",
-  ALIMENTACAO = "Alimentação",
-  TRANSPORTE = "Transporte",
-  LAZER = "Lazer",
-  EDUCACAO = "Educação",
-  VIAGENS = "Viagens",
-  SAUDE = "Saúde",
-  OUTROS = "Outros",
+  SALARIO = "SALARIO",
+  ALIMENTACAO = "ALIMENTACAO",
+  TRANSPORTE = "TRANSPORTE",
+  LAZER = "LAZER",
+  EDUCACAO = "EDUCACAO",
+  VIAGENS = "VIAGENS",
+  SAUDE = "SAUDE",
+  OUTROS = "OUTROS",
 }
 
 export type TransactionsProps = {
@@ -54,7 +54,6 @@ export type CreateTransactionProps = {
   category: TransactionCategory;
   type: TransactionType;
   accountId: string;
-  userId: string;
 };
 
 export type UpdateTransactionProps = {
