@@ -5,16 +5,16 @@ export const Input: React.FC<InputProps> = ({
   placeholder,
   type,
   value,
-  isSecondButton,
+  isSecondInput,
   disabled,
   errorMessage,
   isInvalid,
 }) => {
   const invalid = !!errorMessage || isInvalid;
 
-  const buttonStyle = isSecondButton
-    ? "text-gray-500 bg-gray-900"
-    : "text-gray-800 bg-white";
+  const inputStyle = isSecondInput
+    ? "text-gray-500 bg-gray-900 p-4"
+    : "text-gray-800 bg-white p-6 border";
   const hasError = errorMessage ? "border-red-500" : "border-gray-300";
 
   return (
@@ -25,8 +25,8 @@ export const Input: React.FC<InputProps> = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
-        className={`flex items-center p-6 w-full text-sm border  rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500
-          ${buttonStyle}
+        className={`flex items-center w-full text-sm text-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500
+          ${inputStyle}
           ${hasError}
         `}
       />
