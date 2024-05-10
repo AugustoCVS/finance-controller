@@ -46,10 +46,12 @@ export const useHome = () => {
       isPending,
       transactions,
       isOpen,
+      user,
     },
     actions: {
       onOpen,
       onOpenChange,
+      handleGetTransactions,
     }
   };
 };
