@@ -51,8 +51,10 @@ export default function HomePage() {
       </section>
 
       <ModalNewTransaction
+        userId={states.user.id}
         isOpen={states.isOpen}
         onOpenChange={actions.onOpenChange}
+        handleGetTransactions={actions.handleGetTransactions}
       />
     </>
   );
