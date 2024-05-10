@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Modal,
   ModalBody,
@@ -12,19 +14,22 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  CategoryList,
   FormFields,
   NewTransactionSchema,
 } from "./modal-new-transaction.constants";
 import { InputController } from "@/components/commons/InputController/input-controller.component";
 import { Button } from "@/components/commons/Button/button.component";
 import { TransactionTypeButtons } from "./components/TransactionTypeButtons/transaction-type-buttons.component";
-import React from "react";
-import { TransactionType } from "@/services/interfaces/transactions";
 import { SelectController } from "@/components/commons/SelectController/select-controller.component";
+import { useModalNewTransaction } from "./modal-new-transaction.hook";
+import { Loading } from "@/components/commons/Loading/loading.component";
 
 export const ModalNewTransaction: React.FC<ModalNewTransactionProps> = ({
   isOpen,
   onOpenChange,
+  handleGetTransactions,
+  userId,
 }) => {
   const {
     control,
@@ -34,28 +39,46 @@ export const ModalNewTransaction: React.FC<ModalNewTransactionProps> = ({
     resolver: yupResolver(NewTransactionSchema),
   });
 
-  const [selectedType, setType] = React.useState<TransactionType>();
+  const { states, actions } = useModalNewTransaction({
+    handleGetTransactions,
+    onOpenChange,
+    isOpen,
+    userId,
+  });
+
+  const renderSelectFormFields = () => {
+    return (
+      <div className="flex flex-col gap-4">
+        <SelectController
+          control={control}
+          name="category"
+          errorMessage={errors.category?.message}
+          isInvalid={!!errors.category?.message}
+        >
+          {CategoryList.map((option) => (
+            <option key={option.id} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </SelectController>
+        <SelectController
+          control={control}
+          name="accountId"
+          errorMessage={errors.category?.message}
+          isInvalid={!!errors.category?.message}
+        >
+          {states.data?.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
+          ))}
+        </SelectController>
+      </div>
+    );
+  };
 
   const renderFormFields = () => {
     return FormFields.map((field) => {
-      if (field.type === "select") {
-        return (
-          <SelectController
-            key={field.id}
-            control={control}
-            name={field.name}
-            errorMessage={errors[field.name as keyof typeof errors]?.message}
-            isInvalid={!!errors[field.name as keyof typeof errors]}
-          >
-            {field.options?.map((option) => (
-              <option key={option.id} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </SelectController>
-        );
-      }
-
       return (
         <InputController
           key={field.id}
@@ -78,9 +101,9 @@ export const ModalNewTransaction: React.FC<ModalNewTransactionProps> = ({
         control={control}
         render={({ field }) => (
           <TransactionTypeButtons
-            selectedType={selectedType}
+            selectedType={states.selectedType}
             setType={(type) => {
-              setType(type);
+              actions.setSelectedType(type);
               field.onChange(type);
             }}
             errorMessage={errors.type?.message}
@@ -104,16 +127,21 @@ export const ModalNewTransaction: React.FC<ModalNewTransactionProps> = ({
         <ModalBody>
           <form
             className="flex flex-col gap-4"
-            onSubmit={handleSubmit((data) => console.log(data))}
+            onSubmit={handleSubmit(actions.onFormSubmit)}
           >
             {renderFormFields()}
+            {renderSelectFormFields()}
             {renderTypeSelector()}
             <ModalFooter>
               <Button
                 className="w-full items-center justify-center p-4 bg-green-500 text-white font-regular hover:bg-green-300 rounded-lg disabled:bg-gray-500 disabled:hover:text-gray-100 disabled:cursor-not-allowed"
                 type="submit"
               >
-                Cadastrar
+                {states.handleCreateTransaction.isPending ? (
+                  <Loading />
+                ) : (
+                  "Cadastrar"
+                )}
               </Button>
             </ModalFooter>
           </form>
