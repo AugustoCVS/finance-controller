@@ -46,3 +46,23 @@ export type TransactionResponseProps = {
   transactions: TransactionsProps[];
   meta: MetaData;
 };
+
+export type CreateTransactionProps = {
+  description: string;
+  value: number;
+  date: Date;
+  category: TransactionCategory;
+  type: TransactionType;
+  accountId: string;
+  userId: string;
+};
+
+export type UpdateTransactionProps = {
+  description?: string;
+  value?: number;
+  date?: Date;
+  category?: TransactionCategory;
+  type?: TransactionType;
+  accountId?: string;
+  transactionId: string;
+}
