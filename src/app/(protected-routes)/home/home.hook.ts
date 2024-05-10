@@ -7,6 +7,8 @@ import { ERROR_MESSAGE } from "./home.constants";
 import { TransactionsService } from "@/services/transactions";
 import { setTransactions } from "@/redux/slices/Transactions/transactions.slice";
 import { useDisclosure } from "@nextui-org/react";
+import { TransactionsProps } from "@/services/interfaces/transactions";
+import { useState } from "react";
 
 export const useHome = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,9 @@ export const useHome = () => {
   const transactions = useSelector((state: RootState) => state.transactions);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen: isEditModalOpen, onOpen: onOpenEditModal, onOpenChange: onEditModalOpenChange } = useDisclosure();
+
+  const [transaction, setTransaction] = useState<TransactionsProps>();
 
   const handleGetTransactions = async (): Promise<void> => {
     await TransactionsService.getTransactions({
@@ -41,17 +46,33 @@ export const useHome = () => {
     enabled: user.id !== "",
   });
 
+  const handleOpenEditModal = (transaction: TransactionsProps) => {
+    onEditModalOpenChange();
+    setTransaction(transaction);
+  };
+
+  const handleOpenNewModal = () => {
+    onOpen();
+  }
+
   return {
     states: {
       isPending,
       transactions,
-      isOpen,
       user,
+      transaction,
+      isOpen,
+      isEditModalOpen,
     },
     actions: {
-      onOpen,
-      onOpenChange,
       handleGetTransactions,
-    }
+      setTransaction,
+      handleOpenEditModal,
+      handleOpenNewModal,
+      onOpenChange,
+      onOpen,
+      onOpenEditModal,
+      onEditModalOpenChange,
+    },
   };
 };
