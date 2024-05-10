@@ -58,13 +58,15 @@ export default function HomePage() {
         handleGetTransactions={actions.handleGetTransactions}
       />
 
-      <ModalEditTransaction
-        userId={states.user.id}
-        isOpen={states.isEditModalOpen}
-        onOpenChange={actions.onEditModalOpenChange}
-        handleGetTransactions={actions.handleGetTransactions}
-        transactionData={states.transaction!}
-      />
+      {states.transaction && (
+        <ModalEditTransaction
+          userId={states.user.id}
+          isOpen={states.isEditModalOpen}
+          onOpenChange={actions.onEditModalOpenChange}
+          handleGetTransactions={actions.handleGetTransactions}
+          transactionData={states.transaction}
+        />
+      )}
     </>
   );
 }
