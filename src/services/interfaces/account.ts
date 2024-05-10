@@ -38,7 +38,6 @@ export type CreateAccountRequestProps = {
   bank: BankTypes,
   accountType: AccountType;
   description: string;
-  userId: string;
 }
 
 export type UpdateAccountRequestProps = {
