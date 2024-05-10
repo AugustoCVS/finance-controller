@@ -20,10 +20,10 @@ import {
 } from "./modal-new-transaction.constants";
 import { InputController } from "@/components/commons/InputController/input-controller.component";
 import { Button } from "@/components/commons/Button/button.component";
-import { TransactionTypeButtons } from "./components/TransactionTypeButtons/transaction-type-buttons.component";
 import { SelectController } from "@/components/commons/SelectController/select-controller.component";
 import { useModalNewTransaction } from "./modal-new-transaction.hook";
 import { Loading } from "@/components/commons/Loading/loading.component";
+import { TransactionTypeButtons } from "../TransactionTypeButtons/transaction-type-buttons.component";
 
 export const ModalNewTransaction: React.FC<ModalNewTransactionProps> = ({
   isOpen,
