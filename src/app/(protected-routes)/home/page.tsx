@@ -9,6 +9,7 @@ import { useSummary } from "@/utils/summary";
 import { TransactionCard } from "./components/TransactionCard/transaction-card.component";
 import { SkeletonTransactionCard } from "./components/SkeletonTransactionCard/skeleton-transaction-card.component";
 import { ModalNewTransaction } from "./components/ModalNewTransaction/modal-new-transaction.component";
+import { ModalEditTransaction } from "./components/ModalEditTransaction/modal-edit-transaction.component";
 
 export default function HomePage() {
   const { states, actions } = useHome();
@@ -17,7 +18,7 @@ export default function HomePage() {
   return (
     <>
       <section className="w-full h-screen flex flex-col items-center bg-gray-800 pl-20">
-        <ButtonSection onClick={actions.onOpen} />
+        <ButtonSection onClick={actions.handleOpenNewModal} />
         <div className="flex items-center justify-around mt-[-3rem] gap-12 ">
           {balanceList.map((balance) => {
             return (
@@ -42,7 +43,7 @@ export default function HomePage() {
                 accountName={transaction.accountName}
                 category={transaction.category}
                 date={transaction.date}
-                edit={() => {}}
+                edit={() => actions.handleOpenEditModal(transaction)}
                 remove={() => {}}
               />
             );
@@ -55,6 +56,14 @@ export default function HomePage() {
         isOpen={states.isOpen}
         onOpenChange={actions.onOpenChange}
         handleGetTransactions={actions.handleGetTransactions}
+      />
+
+      <ModalEditTransaction
+        userId={states.user.id}
+        isOpen={states.isEditModalOpen}
+        onOpenChange={actions.onEditModalOpenChange}
+        handleGetTransactions={actions.handleGetTransactions}
+        transactionData={states.transaction!}
       />
     </>
   );
