@@ -7,17 +7,15 @@ import {
 } from "./interfaces/account";
 
 export const AccountService = {
-  getAccount: async ({ userId }: AccountRequestProps) => {
-    const res = await api.get<AccountProps[]>(`/accounts/${userId}`);
+  getAccounts: async ({ userId }: AccountRequestProps) => {
+    const res = await api.get<AccountProps[]>(`/accounts/list/${userId}`);
     return res.data;
   },
 
-  createAccount: async ({
-    accountType,
-    bank,
-    description,
-    userId,
-  }: CreateAccountRequestProps) => {
+  createAccount: async (
+    { accountType, bank, description }: CreateAccountRequestProps,
+    { userId }: { userId: string }
+  ) => {
     const res = await api.post<AccountProps>("/accounts/create", {
       userId,
       accountType,
