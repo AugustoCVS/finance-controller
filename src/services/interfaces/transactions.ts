@@ -61,6 +61,6 @@ export type UpdateTransactionProps = {
   value: number;
   date: Date;
   category: TransactionCategory;
-  type: TransactionType;
+  type?: TransactionType;
   accountId: string;
 }
