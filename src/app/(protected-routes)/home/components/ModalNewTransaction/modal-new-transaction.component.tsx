@@ -136,6 +136,7 @@ export const ModalNewTransaction: React.FC<ModalNewTransactionProps> = ({
               <Button
                 className="w-full items-center justify-center p-4 bg-green-500 text-white font-regular hover:bg-green-300 rounded-lg disabled:bg-gray-500 disabled:hover:text-gray-100 disabled:cursor-not-allowed"
                 type="submit"
+                loading={states.handleCreateTransaction.isPending}
               >
                 {states.handleCreateTransaction.isPending ? (
                   <Loading />
