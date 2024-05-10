@@ -22,15 +22,17 @@ export const TransactionsService = {
     return res.data;
   },
 
-  crateTransaction: async ({
-    accountId,
-    category,
-    date,
-    description,
-    type,
-    userId,
-    value,
-  }: CreateTransactionProps) => {
+  createTransaction: async (
+    {
+      accountId,
+      category,
+      date,
+      description,
+      type,
+      value,
+    }: CreateTransactionProps,
+    { userId }: { userId: string }
+  ) => {
     const res = await api.post<TransactionsProps>("/transactions/create", {
       accountId,
       category,
@@ -44,15 +46,26 @@ export const TransactionsService = {
     return res.data;
   },
 
-  updateTransaction: async ({transactionId, accountId, category, date, description, type, value}: UpdateTransactionProps) => {
-    const res = await api.put<TransactionsProps>(`/transactions/update/${transactionId}`, {
-      description,
-      value,
-      date,
-      type,
-      category,
-      accountId,
-    });
+  updateTransaction: async ({
+    transactionId,
+    accountId,
+    category,
+    date,
+    description,
+    type,
+    value,
+  }: UpdateTransactionProps) => {
+    const res = await api.put<TransactionsProps>(
+      `/transactions/update/${transactionId}`,
+      {
+        description,
+        value,
+        date,
+        type,
+        category,
+        accountId,
+      }
+    );
 
     return res.data;
   },
