@@ -46,15 +46,17 @@ export const TransactionsService = {
     return res.data;
   },
 
-  updateTransaction: async ({
-    transactionId,
-    accountId,
-    category,
-    date,
-    description,
-    type,
-    value,
-  }: UpdateTransactionProps) => {
+  updateTransaction: async (
+    {
+      accountId,
+      category,
+      date,
+      description,
+      type,
+      value,
+    }: UpdateTransactionProps,
+    { transactionId }: { transactionId: string }
+  ) => {
     const res = await api.put<TransactionsProps>(
       `/transactions/update/${transactionId}`,
       {
