@@ -64,8 +64,8 @@ export const ModalNewTransaction: React.FC<ModalNewTransactionProps> = ({
         <SelectController
           control={control}
           name="accountId"
-          errorMessage={errors.category?.message}
-          isInvalid={!!errors.category?.message}
+          errorMessage={errors.accountId?.message}
+          isInvalid={!!errors.accountId?.message}
         >
           {states.data?.map((option) => (
             <option key={option.id} value={option.id}>

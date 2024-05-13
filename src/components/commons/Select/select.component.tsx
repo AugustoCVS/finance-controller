@@ -22,6 +22,9 @@ export const Select: React.FC<SelectProps> = ({
           ${hasError}
         `}
       >
+        <option value="" disabled selected hidden>
+          Selecione uma opção
+        </option>
         {children}
       </select>
       {invalid && (
