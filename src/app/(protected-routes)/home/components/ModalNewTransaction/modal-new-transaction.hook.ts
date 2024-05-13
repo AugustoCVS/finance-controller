@@ -18,7 +18,7 @@ export const useModalNewTransaction = ({
   onOpenChange,
   userId,
 }: ModalNewTransactionProps) => {
-  const [selectedType, setSelectedType] = useState<TransactionType>();
+  const [selectedType, setSelectedType] = useState<TransactionType>("" as TransactionType);
 
   const handleCreateTransaction = useMutation({
     mutationFn: async (data: CreateTransactionProps) =>
