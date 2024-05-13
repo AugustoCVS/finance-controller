@@ -10,7 +10,11 @@ export const Profile: React.FC = () => {
     deleteUserInfoOnSessionCookies();
     setTimeout(() => {
       router.push("/");
-    }, 1000);
+      MessageUtils.handleSendToast({
+        type: "success",
+        message: "Volte Sempre!",
+      });
+    }, 500);
   };
 
   return (
