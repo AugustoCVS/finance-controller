@@ -3,10 +3,14 @@ import { Roboto_Mono } from "next/font/google";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { NextUIProvider } from "@nextui-org/react";
 
 import "@/styles/globals.css";
 import { ReduxStore } from "@/providers/ReduxStore";
 import { ReactQuery } from "@/providers/ReactQuery";
+import { Menu } from "@/components/layout/Menu/menu.component";
+import { Header } from "@/components/layout/Header/header.component";
+import { UserInfo } from "@/providers/User";
 
 const roboto = Roboto_Mono({ subsets: ["latin"] });
 
@@ -25,8 +29,14 @@ export default function RootLayout({
       <body className={roboto.className}>
         <ReduxStore>
           <ReactQuery>
-            {children}
-            <ToastContainer />
+            <NextUIProvider>
+              <UserInfo>
+                <Menu />
+                <Header />
+                {children}
+                <ToastContainer />
+              </UserInfo>
+            </NextUIProvider>
           </ReactQuery>
         </ReduxStore>
       </body>

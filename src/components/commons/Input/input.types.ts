@@ -4,7 +4,7 @@ export type InputProps = {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
-  isSecondButton?: boolean;
+  isSecondInput?: boolean;
   errorMessage?: string;
   isInvalid?: boolean;
 };
