@@ -17,4 +17,5 @@ export interface FormField {
   name: string;
   title: string;
   type: string;
+  defaultValue?: string | number;
 }

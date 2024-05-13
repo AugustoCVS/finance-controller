@@ -3,11 +3,11 @@ import * as yup from "yup";
 import { FormField } from "./modal-edit-transaction.types";
 
 export const EditTransactionSchema = yup.object().shape({
-  description: yup.string().required("Descrição do gasto é obrigatória"),
-  value: yup.number().required("Valor é obrigatório"),
-  date: yup.date().required("Data é obrigatória"),
-  accountId: yup.string().required("Conta é obrigatória"),
-  category: yup.string<TransactionCategory>().required("Categoria é obrigatória"),
+  description: yup.string(),
+  value: yup.number(),
+  date: yup.date(),
+  accountId: yup.string(),
+  category: yup.string<TransactionCategory>(),
   type: yup.string<TransactionType>(),
 });
 

@@ -24,11 +24,6 @@ import { TransactionTypeButtons } from "../TransactionTypeButtons/transaction-ty
 import { SelectController } from "@/components/commons/SelectController/select-controller.component";
 import { useModalEditTransaction } from "./modal-edit-transaction.hook";
 import { Loading } from "@/components/commons/Loading/loading.component";
-import { secondDateFormatter } from "@/utils/formaters";
-import {
-  TransactionCategory,
-  TransactionType,
-} from "@/services/interfaces/transactions";
 
 export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
   isOpen,
@@ -61,7 +56,6 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
           name="category"
           errorMessage={errors.category?.message}
           isInvalid={!!errors.category?.message}
-          defaultValue={transactionData?.category}
         >
           {CategoryList.map((option) => (
             <option key={option.id} value={option.value}>
@@ -72,9 +66,8 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
         <SelectController
           control={control}
           name="accountId"
-          errorMessage={errors.category?.message}
-          isInvalid={!!errors.category?.message}
-          defaultValue={transactionData?.accountId}
+          errorMessage={errors.accountId?.message}
+          isInvalid={!!errors.accountId?.message}
         >
           {states.data?.map((option) => (
             <option key={option.id} value={option.id}>
@@ -88,15 +81,6 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
 
   const renderFormFields = () => {
     return FormFields.map((field) => {
-      let defaultValue =
-        transactionData?.[field.name as keyof typeof transactionData];
-
-      const isDateField = field.name === "date";
-
-      if (isDateField) {
-        defaultValue = secondDateFormatter.format(new Date(defaultValue));
-      }
-
       return (
         <InputController
           key={field.id}
@@ -104,7 +88,6 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
           name={field.name}
           placeholder={field.title}
           type={field.type}
-          defaultValue={defaultValue}
           errorMessage={errors[field.name as keyof typeof errors]?.message}
           isInvalid={!!errors[field.name as keyof typeof errors]}
           isSecondInput
@@ -114,28 +97,26 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
   };
 
   const renderTypeSelector = () => {
-    if (transactionData) {
-      const { type } = transactionData;
-
-      return (
-        <Controller
-          name="type"
-          control={control}
-          render={({ field }) => (
-            <TransactionTypeButtons
-              selectedType={type}
-              setType={(type) => {
-                actions.setSelectedType(type);
-                field.onChange(type);
-              }}
-              errorMessage={errors.type?.message}
-              isInvalid={!!errors.type}
-            />
-          )}
-        />
-      );
-    }
+    return (
+      <Controller
+        name="type"
+        control={control}
+        render={({ field }) => (
+          <TransactionTypeButtons
+            selectedType={states.selectedType}
+            setType={(type) => {
+              actions.setSelectedType(type);
+              field.onChange(type);
+            }}
+            errorMessage={errors.type?.message}
+            isInvalid={!!errors.type}
+          />
+        )}
+      />
+    );
   };
+
+  if (!transactionData) return null;
 
   return (
     <Modal

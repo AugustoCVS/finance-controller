@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { ModalEditTransactionProps } from "./modal-edit-transaction.types";
+import { FormField, ModalEditTransactionProps } from "./modal-edit-transaction.types";
 import {
   TransactionType,
   UpdateTransactionProps,
@@ -10,7 +10,7 @@ import {
   ERROR_MESSAGE,
   SUCCESS_MESSAGE,
 } from "./modal-edit-transaction.constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AccountService } from "@/services/account";
 
 export const useModalEditTransaction = ({
@@ -19,7 +19,7 @@ export const useModalEditTransaction = ({
   userId,
   transactionData,
 }: ModalEditTransactionProps) => {
-  const [selectedType, setSelectedType] = useState<TransactionType>();
+  const [selectedType, setSelectedType] = useState<TransactionType>(transactionData.type);
 
   const handleUpdateTransaction = useMutation({
     mutationFn: async (data: UpdateTransactionProps) =>
@@ -42,9 +42,9 @@ export const useModalEditTransaction = ({
 
   const onFormSubmit = (data: UpdateTransactionProps): void => {
     if (data.type === TransactionType.INCOME) {
-      data.value = Math.abs(data.value); 
+      data.value = Math.abs(data.value ?? 0); 
     } else if (data.type === TransactionType.OUTCOME) {
-      data.value = -Math.abs(data.value); 
+      data.value = -Math.abs(data.value ?? 0); 
     }
   
     handleUpdateTransaction.mutate(data);
@@ -61,6 +61,10 @@ export const useModalEditTransaction = ({
     refetchOnWindowFocus: false,
     retry: false,
   });
+
+  useEffect(() => {
+    setSelectedType(transactionData.type); 
+  }, [transactionData.type]);
 
   return {
     states: {
