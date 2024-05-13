@@ -18,7 +18,7 @@ export const TransactionCard: React.FC<TransactionProps> = ({
       <Text text={title} />
       <Value value={value} />
       <Text text={accountName} />
-      <Text text={category} />
+      <Text text={category} isCategory />
       <Text text={date.toString()} isDate />
       <ButtonSection edit={edit} remove={remove} />
     </div>
