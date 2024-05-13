@@ -4,6 +4,5 @@ export type ModalDeleteTransactionProps = {
   isOpen: boolean;
   onOpenChange: () => void;
   handleGetTransactions: () => Promise<void>;
-  userId: string;
   transactionData: TransactionsProps
 }
