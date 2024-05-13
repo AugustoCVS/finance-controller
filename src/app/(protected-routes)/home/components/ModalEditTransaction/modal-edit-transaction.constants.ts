@@ -5,7 +5,7 @@ import { FormField } from "./modal-edit-transaction.types";
 export const EditTransactionSchema = yup.object().shape({
   description: yup.string(),
   value: yup.number(),
-  date: yup.date(),
+  date: yup.string(),
   accountId: yup.string(),
   category: yup.string<TransactionCategory>(),
   type: yup.string<TransactionType>(),

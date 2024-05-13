@@ -47,7 +47,12 @@ export const useModalEditTransaction = ({
       data.value = -Math.abs(data.value ?? 0); 
     }
 
-    handleUpdateTransaction.mutate(data);
+    const newDate = new Date(data.date as string);
+
+    handleUpdateTransaction.mutate({
+      ...data,
+      date: newDate,
+    });
   };
 
   const { data } = useQuery({

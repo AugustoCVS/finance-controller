@@ -59,7 +59,7 @@ export type CreateTransactionProps = {
 export type UpdateTransactionProps = {
   description?: string;
   value?: number;
-  date?: Date;
+  date?: Date | string;
   category?: TransactionCategory;
   type?: TransactionType;
   accountId?: string;

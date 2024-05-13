@@ -1,5 +1,5 @@
 import React from "react";
-
+import { format } from "date-fns";
 import {
   Modal,
   ModalBody,
@@ -32,6 +32,8 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
   userId,
   transactionData,
 }) => {
+  const formattedDate = format(transactionData.date, "yyyy-MM-dd");
+
   const {
     control,
     handleSubmit,
@@ -44,7 +46,7 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
       description: transactionData.description,
       type: transactionData.type,
       value: transactionData.value,
-      date: transactionData.date,
+      date: formattedDate,
     },
   });
 
