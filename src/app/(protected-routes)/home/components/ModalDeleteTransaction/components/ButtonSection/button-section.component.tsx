@@ -8,15 +8,15 @@ export const ButtonSection: React.FC<ButtonSectionProps> = ({
   onClose,
 }) => {
   return (
-    <div className="flex flex-row gap-4 items-center">
+    <div className="w-full flex flex-row gap-4 items-center">
       <Button
-        className="flex items-center justify-center p-4 bg-red-300 text-white rounded-2xl cursor-pointer hover:bg-red-500"
+        className="w-full flex items-center justify-center p-4 bg-red-300 text-white rounded-3xl cursor-pointer hover:bg-red-500"
         onClick={handleDeleteTransaction}
       >
         {isLoading ? <Loading /> : "Deletar"}
       </Button>
       <Button
-        className="flex items-center justify-center p-4 bg-gray-300 text-white rounded-2xl cursor-pointer hover:bg-gray-400"
+        className="w-full flex items-center justify-center p-4 bg-gray-600 text-white rounded-3xl cursor-pointer hover:bg-gray-400"
         onClick={onClose}
       >
         Cancelar
