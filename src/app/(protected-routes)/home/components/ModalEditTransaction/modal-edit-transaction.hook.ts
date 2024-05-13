@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { FormField, ModalEditTransactionProps } from "./modal-edit-transaction.types";
+import { ModalEditTransactionProps } from "./modal-edit-transaction.types";
 import {
   TransactionType,
   UpdateTransactionProps,
@@ -46,7 +46,7 @@ export const useModalEditTransaction = ({
     } else if (data.type === TransactionType.OUTCOME) {
       data.value = -Math.abs(data.value ?? 0); 
     }
-  
+
     handleUpdateTransaction.mutate(data);
   };
 

@@ -38,6 +38,14 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
     formState: { errors },
   } = useForm<formProps>({
     resolver: yupResolver(EditTransactionSchema),
+    values: {
+      accountId: transactionData.accountId,
+      category: transactionData.category,
+      description: transactionData.description,
+      type: transactionData.type,
+      value: transactionData.value,
+      date: transactionData.date,
+    },
   });
 
   const { states, actions } = useModalEditTransaction({
@@ -115,8 +123,6 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
       />
     );
   };
-
-  if (!transactionData) return null;
 
   return (
     <Modal

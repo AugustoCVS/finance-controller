@@ -46,9 +46,11 @@ export const useHome = () => {
     enabled: user.id !== "",
   });
 
-  const handleOpenEditModal = (transaction: TransactionsProps) => {
+  const handleOpenEditModal = ({
+    transactionData
+  }: {transactionData: TransactionsProps}) => {
+    setTransaction(transactionData);
     onEditModalOpenChange();
-    setTransaction(transaction);
   };
 
   const handleOpenNewModal = () => {

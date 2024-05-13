@@ -43,7 +43,11 @@ export default function HomePage() {
                 accountName={transaction.accountName}
                 category={transaction.category}
                 date={transaction.date}
-                edit={() => actions.handleOpenEditModal(transaction)}
+                edit={() =>
+                  actions.handleOpenEditModal({
+                    transactionData: transaction,
+                  })
+                }
                 remove={() => {}}
               />
             );
