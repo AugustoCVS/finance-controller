@@ -34,7 +34,7 @@ export const useModalNewTransaction = ({
       onOpenChange();
       MessageUtils.handleSendToast({
         message: SUCCESS_MESSAGE,
-        type: "error",
+        type: "success",
       });
     },
   });
@@ -45,7 +45,7 @@ export const useModalNewTransaction = ({
     } else if (data.type === TransactionType.OUTCOME) {
       data.value = -Math.abs(data.value); 
     }
-  
+
     handleCreateTransaction.mutate(data);
   };
 
