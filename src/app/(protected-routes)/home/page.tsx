@@ -10,6 +10,7 @@ import { TransactionCard } from "./components/TransactionCard/transaction-card.c
 import { SkeletonTransactionCard } from "./components/SkeletonTransactionCard/skeleton-transaction-card.component";
 import { ModalNewTransaction } from "./components/ModalNewTransaction/modal-new-transaction.component";
 import { ModalEditTransaction } from "./components/ModalEditTransaction/modal-edit-transaction.component";
+import { ModalDeleteTransaction } from "./components/ModalDeleteTransaction/modal-delete-transaction.component";
 
 export default function HomePage() {
   const { states, actions } = useHome();
@@ -17,7 +18,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="w-full h-screen flex flex-col items-center bg-gray-800 pl-20">
+      <section className="w-full h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8">
         <ButtonSection onClick={actions.handleOpenNewModal} />
         <div className="flex items-center justify-around mt-[-3rem] gap-12 ">
           {balanceList.map((balance) => {
@@ -48,7 +49,11 @@ export default function HomePage() {
                     transactionData: transaction,
                   })
                 }
-                remove={() => {}}
+                remove={() =>
+                  actions.handleOpenDeleteModal({
+                    transactionData: transaction,
+                  })
+                }
               />
             );
           })}
@@ -63,13 +68,22 @@ export default function HomePage() {
       />
 
       {states.transaction && (
-        <ModalEditTransaction
-          userId={states.user.id}
-          isOpen={states.isEditModalOpen}
-          onOpenChange={actions.onEditModalOpenChange}
-          handleGetTransactions={actions.handleGetTransactions}
-          transactionData={states.transaction}
-        />
+        <>
+          <ModalEditTransaction
+            userId={states.user.id}
+            isOpen={states.isEditModalOpen}
+            onOpenChange={actions.onEditModalOpenChange}
+            handleGetTransactions={actions.handleGetTransactions}
+            transactionData={states.transaction}
+          />
+
+          <ModalDeleteTransaction
+            isOpen={states.isDeleteModalOpen}
+            onOpenChange={actions.onDeleteModalOpenChange}
+            transactionData={states.transaction}
+            handleGetTransactions={actions.handleGetTransactions}
+          />
+        </>
       )}
     </>
   );
