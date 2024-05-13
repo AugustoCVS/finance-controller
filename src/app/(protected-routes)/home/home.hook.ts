@@ -16,7 +16,8 @@ export const useHome = () => {
   const transactions = useSelector((state: RootState) => state.transactions);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { isOpen: isEditModalOpen, onOpen: onOpenEditModal, onOpenChange: onEditModalOpenChange } = useDisclosure();
+  const { isOpen: isEditModalOpen, onOpenChange: onEditModalOpenChange } = useDisclosure();
+  const { isOpen: isDeleteModalOpen, onOpen: onOpenDeleteModal, onOpenChange: onDeleteModalOpenChange } = useDisclosure();
 
   const [transaction, setTransaction] = useState<TransactionsProps>();
 
@@ -57,6 +58,13 @@ export const useHome = () => {
     onOpen();
   }
 
+  const handleOpenDeleteModal = ({
+    transactionData
+  }: {transactionData: TransactionsProps}) => {
+    setTransaction(transactionData);
+    onOpenDeleteModal();
+  };
+
   return {
     states: {
       isPending,
@@ -65,16 +73,17 @@ export const useHome = () => {
       transaction,
       isOpen,
       isEditModalOpen,
+      isDeleteModalOpen,
     },
     actions: {
       handleGetTransactions,
       setTransaction,
       handleOpenEditModal,
       handleOpenNewModal,
+      handleOpenDeleteModal,
       onOpenChange,
-      onOpen,
-      onOpenEditModal,
       onEditModalOpenChange,
+      onDeleteModalOpenChange,
     },
   };
 };
