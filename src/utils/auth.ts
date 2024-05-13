@@ -18,8 +18,14 @@ const getRefreshTokenId = async (): Promise<string | undefined> => {
   return cookies().get("@refreshTokenId")?.value;
 };
 
+const deleteUserInfoOnSessionCookies = (): void => {
+  cookies().delete("@token");
+  cookies().delete("@refreshTokenId");
+}
+
 export {
   saveUserInfoOnSessionCookies,
   getToken,
   getRefreshTokenId,
+  deleteUserInfoOnSessionCookies
 };
