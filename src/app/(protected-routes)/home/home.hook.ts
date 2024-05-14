@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { MessageUtils } from "@/utils/messages";
-import { ERROR_MESSAGE } from "./home.constants";
+import { ERROR_DELETE_MESSAGE, ERROR_MESSAGE, SUCCESS_DELETE_MESSAGE } from "./home.constants";
 import { TransactionsService } from "@/services/transactions";
 import { setTransactions } from "@/redux/slices/Transactions/transactions.slice";
 import { useDisclosure } from "@nextui-org/react";
@@ -65,6 +65,34 @@ export const useHome = () => {
     onDeleteModalOpenChange();
   };
 
+  const deleteTransaction = useMutation({
+    mutationFn: async ({ transactionId }: { transactionId: string }) => {
+      return await TransactionsService.deleteTransaction({
+        transactionId,
+      });
+    },
+    onSuccess: async () => {
+      await handleGetTransactions();
+      MessageUtils.handleSendToast({
+        message: SUCCESS_DELETE_MESSAGE,
+        type: "success",
+      });
+    },
+    onError: () => {
+      MessageUtils.handleSendToast({
+        message: ERROR_DELETE_MESSAGE,
+        type: "error",
+      });
+    },
+  });
+
+  const handleDeleteTransaction = (): void => {
+    if(transaction){
+      deleteTransaction.mutate({ transactionId: transaction?.id });
+    }
+    onDeleteModalOpenChange();
+  }
+
   return {
     states: {
       isPending,
@@ -74,6 +102,7 @@ export const useHome = () => {
       isOpen,
       isEditModalOpen,
       isDeleteModalOpen,
+      deleteTransaction,
     },
     actions: {
       handleGetTransactions,
@@ -84,6 +113,7 @@ export const useHome = () => {
       onOpenChange,
       onEditModalOpenChange,
       onDeleteModalOpenChange,
+      handleDeleteTransaction,
     },
   };
 };
