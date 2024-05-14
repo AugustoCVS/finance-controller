@@ -25,12 +25,10 @@ export const AccountService = {
     return res.data;
   },
 
-  updateAccount: async ({
-    accountType,
-    bank,
-    description,
-    accountId,
-  }: UpdateAccountRequestProps) => {
+  updateAccount: async (
+    { accountType, bank, description }: UpdateAccountRequestProps,
+    { accountId }: { accountId: string }
+  ) => {
     const res = await api.put<AccountProps>(`/accounts/update/${accountId}`, {
       accountType,
       bank,

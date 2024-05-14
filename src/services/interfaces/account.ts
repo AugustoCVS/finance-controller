@@ -45,5 +45,4 @@ export type UpdateAccountRequestProps = {
   bank?: BankTypes,
   accountType?: AccountType;
   description?: string;
-  accountId: string;
 }
