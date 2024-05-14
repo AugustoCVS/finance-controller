@@ -4,11 +4,12 @@ import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 import { ModalNewAccountProps, formProps } from "./modal-new-account.types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NewAccountSchema, selectFields } from "./modal-new-account.constants";
+import { NewAccountSchema } from "./modal-new-account.constants";
 import { SelectController } from "@/components/commons/SelectController/select-controller.component";
 import { InputController } from "@/components/commons/InputController/input-controller.component";
 import { ButtonSection } from "./components/ButtonSection/button-section.component";
 import { useModalNewAccount } from "./modal-new-account.hook";
+import { selectFields } from "../../accounts.constants";
 
 export const ModalNewAccount: React.FC<ModalNewAccountProps> = ({
   handleGetTransactions,
