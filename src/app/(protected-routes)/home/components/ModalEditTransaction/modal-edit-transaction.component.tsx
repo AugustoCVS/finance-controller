@@ -66,6 +66,7 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
           name="category"
           errorMessage={errors.category?.message}
           isInvalid={!!errors.category?.message}
+          label="Categoria da Transação"
         >
           {CategoryList.map((option) => (
             <option key={option.id} value={option.value}>
@@ -78,6 +79,7 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
           name="accountId"
           errorMessage={errors.accountId?.message}
           isInvalid={!!errors.accountId?.message}
+          label="Conta"
         >
           {states.data?.map((option) => (
             <option key={option.id} value={option.id}>
