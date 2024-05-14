@@ -10,7 +10,7 @@ import { TransactionCard } from "./components/TransactionCard/transaction-card.c
 import { SkeletonTransactionCard } from "./components/SkeletonTransactionCard/skeleton-transaction-card.component";
 import { ModalNewTransaction } from "./components/ModalNewTransaction/modal-new-transaction.component";
 import { ModalEditTransaction } from "./components/ModalEditTransaction/modal-edit-transaction.component";
-import { ModalDeleteTransaction } from "./components/ModalDeleteTransaction/modal-delete-transaction.component";
+import { ModalDelete } from "@/components/commons/ModalDelete/modal-delete.component";
 
 export default function HomePage() {
   const { states, actions } = useHome();
@@ -77,11 +77,12 @@ export default function HomePage() {
             transactionData={states.transaction}
           />
 
-          <ModalDeleteTransaction
+          <ModalDelete
             isOpen={states.isDeleteModalOpen}
             onOpenChange={actions.onDeleteModalOpenChange}
-            transactionData={states.transaction}
-            handleGetTransactions={actions.handleGetTransactions}
+            handleDelete={actions.handleDeleteTransaction}
+            loading={states.deleteTransaction.isPending}
+            title="Deseja deletar esta transação?"
           />
         </>
       )}
