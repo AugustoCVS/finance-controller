@@ -9,12 +9,14 @@ import { Pagination } from "swiper/modules";
 import { AccountCard } from "./components/AccountCard/account-card.component";
 import { useAccounts } from "./accounts.hook";
 import { Skeleton } from "./components/Skeleton/skeleton.component";
+import { Button } from "@/components/commons/Button/button.component";
+import { ModalNewAccount } from "./components/ModalNewAccount/modal-new-account.component";
 
 export default function Accounts() {
-  const { states } = useAccounts();
+  const { states, actions } = useAccounts();
 
   const accountsList = () => {
-    return states.data?.map((account) => {
+    return states.handleGetAccounts.data?.map((account) => {
       return (
         <SwiperSlide key={account.id}>
           <div className="flex items-center justify-center pt-12 bg-transparent">
@@ -34,7 +36,7 @@ export default function Accounts() {
   return (
     <>
       <section className="h-full min-h-screen flex flex-col items-center bg-gray-800 pl-8 pb-8 overflow-hidden">
-        <Skeleton isLoading={states.isLoading} />;
+        <Skeleton isLoading={states.handleGetAccounts.isLoading} />;
         <Swiper
           slidesPerView={1}
           className="w-screen"
@@ -50,7 +52,22 @@ export default function Accounts() {
         >
           {accountsList()}
         </Swiper>
+        <div className="pl-12 mt-8 w-2/6">
+          <Button
+            className="w-full items-center justify-center p-3 border bg-green-300 text-gray-100 font-regular hover:bg-green-500 rounded-lg border-none"
+            onClick={actions.handleOpenNewAccountModal}
+          >
+            Cadastrar Nova Carteira
+          </Button>
+        </div>
       </section>
+
+      <ModalNewAccount
+        isOpen={states.isOpen}
+        onOpenChange={states.onOpenChange}
+        userId={states.user.id}
+        handleGetTransactions={states.handleGetAccounts.refetch}
+      />
     </>
   );
 }
