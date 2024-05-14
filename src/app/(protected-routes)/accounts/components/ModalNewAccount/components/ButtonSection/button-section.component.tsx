@@ -10,7 +10,7 @@ export const ButtonSection: React.FC<ButtonSectionProps> = ({
   return (
     <div className="flex gap-4 py-4">
       <Button
-        onClick={closeModal}
+        onClick={createAccount}
         loading={loading}
         className="w-full items-center justify-center p-3 border bg-green-300 text-gray-100 font-regular hover:bg-green-500 rounded-lg border-none"
         type="submit"
