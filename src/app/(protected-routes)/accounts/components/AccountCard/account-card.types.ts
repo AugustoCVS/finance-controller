@@ -6,4 +6,6 @@ export type AccountCardProps = {
   balance: number;
   accountType: AccountType;
   description: string;
+  editAccount: () => void;
+  deleteAccount: () => void;
 }

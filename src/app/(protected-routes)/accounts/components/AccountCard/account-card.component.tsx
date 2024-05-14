@@ -9,6 +9,8 @@ export const AccountCard: React.FC<AccountCardProps> = ({
   bank,
   description,
   name,
+  deleteAccount,
+  editAccount,
 }) => {
   return (
     <div className="w-[44rem] flex flex-col items-center rounded-2xl p-8 bg-gray-600">
@@ -19,7 +21,7 @@ export const AccountCard: React.FC<AccountCardProps> = ({
         bank={bank}
         description={description}
       />
-      <ButtonSection deleteAccount={() => {}} editAccount={() => {}} />
+      <ButtonSection deleteAccount={deleteAccount} editAccount={editAccount} />
     </div>
   );
 };
