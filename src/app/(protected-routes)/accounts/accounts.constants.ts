@@ -32,3 +32,7 @@ export const selectFields = [
     options: bankOptions
   }
 ]
+
+
+export const SUCCESS_DELETE_MESSAGE = "Conta deletada com sucesso";
+export const ERROR_DELETE_MESSAGE = "Erro ao deletar conta";
