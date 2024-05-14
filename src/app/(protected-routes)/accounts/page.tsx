@@ -11,6 +11,7 @@ import { useAccounts } from "./accounts.hook";
 import { Skeleton } from "./components/Skeleton/skeleton.component";
 import { Button } from "@/components/commons/Button/button.component";
 import { ModalNewAccount } from "./components/ModalNewAccount/modal-new-account.component";
+import { ModalEditAccount } from "./components/ModalEditAccount/modal-edit-account.component";
 
 export default function Accounts() {
   const { states, actions } = useAccounts();
@@ -26,6 +27,10 @@ export default function Accounts() {
               balance={account.balance}
               bank={account.bank}
               description={account.description}
+              editAccount={() =>
+                actions.handleOpenEditModal({ accountData: account })
+              }
+              deleteAccount={() => actions.handleOpenDeleteModal()}
             />
           </div>
         </SwiperSlide>
@@ -68,6 +73,16 @@ export default function Accounts() {
         userId={states.user.id}
         handleGetTransactions={states.handleGetAccounts.refetch}
       />
+
+      {states.accountData && (
+        <ModalEditAccount
+          isOpen={states.isEditModalOpen}
+          onOpenChange={states.onEditModalOpenChange}
+          userId={states.user.id}
+          accountData={states.accountData}
+          handleGetTransactions={states.handleGetAccounts.refetch}
+        />
+      )}
     </>
   );
 }
