@@ -9,6 +9,7 @@ export const SelectController: React.FC<SelectControllerProps> = ({
   name,
   children,
   defaultValue,
+  label,
 }) => {
   return (
     <Controller
@@ -21,6 +22,7 @@ export const SelectController: React.FC<SelectControllerProps> = ({
           onChange={field.onChange}
           errorMessage={errorMessage}
           isInvalid={isInvalid}
+          label={label}
         >
           {children}
         </Select>

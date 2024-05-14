@@ -5,4 +5,5 @@ export type SelectControllerProps = {
   isInvalid: boolean;
   children: React.ReactNode;
   defaultValue?: string;
+  label: string;
 };

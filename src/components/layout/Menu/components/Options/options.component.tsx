@@ -18,7 +18,7 @@ export const Options: React.FC = () => {
       <Wallet
         color="white"
         className="w-6 h-6"
-        onClick={() => actions.handleNavigate({ screenName: "contas" })}
+        onClick={() => actions.handleNavigate({ screenName: "accounts" })}
       />
     ),
   };

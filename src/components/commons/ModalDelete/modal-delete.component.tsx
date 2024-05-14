@@ -5,22 +5,20 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import { ModalDeleteTransactionProps } from "./modal-delete-transaction.types";
+import { ModalDeleteProps } from "./modal-delete.types";
 import { Trash } from "lucide-react";
 import { ButtonSection } from "./components/ButtonSection/button-section.component";
-import { useModalDeleteTransaction } from "./modal-delete-transaction.hook";
+import { useModalDeleteTransaction } from "./modal-delete.hook";
 
-export const ModalDeleteTransaction: React.FC<ModalDeleteTransactionProps> = ({
-  handleGetTransactions,
+export const ModalDelete: React.FC<ModalDeleteProps> = ({
   isOpen,
+  title,
   onOpenChange,
-  transactionData,
+  handleDelete,
+  loading,
 }) => {
-  const { states, actions } = useModalDeleteTransaction({
-    handleGetTransactions,
-    isOpen,
+  const { actions } = useModalDeleteTransaction({
     onOpenChange,
-    transactionData,
   });
 
   return (
@@ -37,16 +35,14 @@ export const ModalDeleteTransaction: React.FC<ModalDeleteTransactionProps> = ({
         </ModalHeader>
         <ModalBody>
           <div className="w-full flex flex-col items-center justify-center">
-            <h2 className="text-lg text-white">
-              Deseja deletar essa transação?
-            </h2>
+            <h2 className="text-lg text-white">{title}</h2>
             <p className="text-sm text-white">A ação não pode ser revertida</p>
           </div>
         </ModalBody>
         <ModalFooter>
           <ButtonSection
-            handleDeleteTransaction={actions.handleDeleteTransaction}
-            isLoading={states.deleteTransaction.isPending}
+            handleDeleteTransaction={handleDelete}
+            isLoading={loading}
             onClose={actions.handleCloseModal}
           />
         </ModalFooter>
