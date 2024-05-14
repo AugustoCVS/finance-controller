@@ -22,6 +22,7 @@ export type AccountProps = {
   id: string;
   name: string;
   balance: number;
+  bank: BankTypes;
   accountType: AccountType;
   description: string;
   userId: string;
