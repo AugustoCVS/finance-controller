@@ -81,8 +81,8 @@ export const ModalNewAccount: React.FC<ModalNewAccountProps> = ({
           </form>
           <ButtonSection
             closeModal={actions.handleCloseModal}
-            createAccount={() => {}}
-            loading={false}
+            createAccount={handleSubmit(actions.onFormSubmit)}
+            loading={states.handleCreateAccount.isPending}
           />
         </ModalBody>
       </ModalContent>
