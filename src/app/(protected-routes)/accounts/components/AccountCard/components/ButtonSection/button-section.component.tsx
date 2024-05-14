@@ -9,13 +9,13 @@ export const ButtonSection: React.FC<ButtonSectionProps> = ({
     <div className="w-full flex items-center gap-12">
       <Button
         onClick={editAccount}
-        className="w-full items-center justify-center p-3 border bg-green-300 text-gray-100 font-regular hover:bg-green-300 rounded-lg border-none"
+        className="w-full items-center justify-center p-3 border bg-green-300 text-gray-100 font-regular hover:bg-green-500 rounded-lg border-none"
       >
         Editar
       </Button>
       <Button
         onClick={deleteAccount}
-        className="w-full items-center justify-center p-3 border bg-red-300 text-gray-100 font-regular hover:bg-green-300 rounded-lg border-none"
+        className="w-full items-center justify-center p-3 border bg-red-300 text-gray-100 font-regular hover:bg-red-500 rounded-lg border-none"
       >
         Excluir
       </Button>
