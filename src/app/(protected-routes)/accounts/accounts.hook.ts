@@ -31,7 +31,7 @@ export const useAccounts = () => {
     },
   });
 
-  const handleDeleteAccount = useMutation({
+  const deleteAccount = useMutation({
     mutationFn: async ({ accountId }: { accountId: string }) => {
       return await AccountService.deleteAccount({
         accountId,
@@ -74,9 +74,9 @@ export const useAccounts = () => {
     onDeleteModalOpenChange();
   };
 
-  const deleteAccount = () => {
+  const handleDeleteAccount = () => {
     if (accountData) {
-      handleDeleteAccount.mutate({
+      deleteAccount.mutate({
         accountId: accountData.id,
       });
       onDeleteModalOpenChange();
@@ -94,12 +94,13 @@ export const useAccounts = () => {
       isDeleteModalOpen,
       onDeleteModalOpenChange,
       accountData,
+      deleteAccount,
     },
     actions: {
       handleOpenNewAccountModal,
       handleOpenEditModal,
       handleOpenDeleteModal,
-      deleteAccount,
+      handleDeleteAccount,
     },
   };
 };

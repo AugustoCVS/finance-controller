@@ -90,7 +90,8 @@ export default function Accounts() {
           <ModalDelete
             isOpen={states.isDeleteModalOpen}
             onOpenChange={states.onDeleteModalOpenChange}
-            handleDelete={actions.deleteAccount}
+            handleDelete={actions.handleDeleteAccount}
+            loading={states.deleteAccount.isPending}
             title="Deseja deletar esta conta?"
           />
         </>
