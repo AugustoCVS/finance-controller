@@ -3,4 +3,5 @@ export type ModalDeleteProps = {
   onOpenChange: () => void;
   title: string;
   handleDelete: () => void;
+  loading: boolean;
 }

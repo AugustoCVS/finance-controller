@@ -15,6 +15,7 @@ export const ModalDelete: React.FC<ModalDeleteProps> = ({
   title,
   onOpenChange,
   handleDelete,
+  loading,
 }) => {
   const { actions } = useModalDeleteTransaction({
     onOpenChange,
@@ -41,7 +42,7 @@ export const ModalDelete: React.FC<ModalDeleteProps> = ({
         <ModalFooter>
           <ButtonSection
             handleDeleteTransaction={handleDelete}
-            isLoading={false}
+            isLoading={loading}
             onClose={actions.handleCloseModal}
           />
         </ModalFooter>
