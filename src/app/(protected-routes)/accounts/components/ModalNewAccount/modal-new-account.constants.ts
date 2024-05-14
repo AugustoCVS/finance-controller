@@ -3,8 +3,8 @@ import { AccountType, BankTypes } from "@/services/interfaces/account";
 
 export const NewAccountSchema = yup.object().shape({
   description: yup.string().max(50).required("Descrição da conta é obrigatória"),
-  bankType: yup.string<AccountType>().required("Categoria é obrigatória"),
-  accountType: yup.string<BankTypes>().required("Tipo da transação é obrigatório"),
+  bank: yup.string<BankTypes>().required("Selecionar um banco é obrigatório"),
+  accountType: yup.string<AccountType>().required("Tipo de conta é obrigatório"),
 });
 
 export const accountOptions = [
@@ -37,8 +37,11 @@ export const selectFields = [
   },
   {
     id: 1,
-    name: 'bankType',
+    name: 'bank',
     label: 'Banco',
     options: bankOptions
   }
 ]
+
+export const ERROR_MESSAGE = "Erro ao criar conta";
+export const SUCCESS_MESSAGE = "Conta criada com sucesso";
