@@ -11,13 +11,13 @@ export const ButtonSection: React.FC<ButtonSectionProps> = ({
         onClick={editAccount}
         className="w-full items-center justify-center p-3 border bg-green-300 text-gray-100 font-regular hover:bg-green-300 rounded-lg border-none"
       >
-        Nova Transação
+        Editar
       </Button>
       <Button
         onClick={deleteAccount}
         className="w-full items-center justify-center p-3 border bg-red-300 text-gray-100 font-regular hover:bg-green-300 rounded-lg border-none"
       >
-        Nova Transação
+        Excluir
       </Button>
     </div>
   );
