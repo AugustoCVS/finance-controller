@@ -32,6 +32,11 @@ export const ModalEditAccount: React.FC<ModalEditAccountProps> = ({
     formState: { errors },
   } = useForm<formProps>({
     resolver: yupResolver(EditAccountSchema),
+    values: {
+      accountType: accountData?.accountType,
+      bank: accountData?.bank,
+      description: accountData?.description,
+    },
   });
 
   const renderSelectFields = () => {
@@ -75,7 +80,7 @@ export const ModalEditAccount: React.FC<ModalEditAccountProps> = ({
     >
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1 text-gray-100">
-          Nova Conta
+          Editar Conta
         </ModalHeader>
         <ModalBody>
           <form className="flex flex-col gap-4">
