@@ -72,7 +72,7 @@ export const ModalNewAccount: React.FC<ModalNewAccountProps> = ({
     >
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1 text-gray-100">
-          Nova transação
+          Nova Conta
         </ModalHeader>
         <ModalBody>
           <form className="flex flex-col gap-4">
