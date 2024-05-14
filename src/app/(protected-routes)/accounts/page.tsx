@@ -12,6 +12,7 @@ import { Skeleton } from "./components/Skeleton/skeleton.component";
 import { Button } from "@/components/commons/Button/button.component";
 import { ModalNewAccount } from "./components/ModalNewAccount/modal-new-account.component";
 import { ModalEditAccount } from "./components/ModalEditAccount/modal-edit-account.component";
+import { ModalDelete } from "@/components/commons/ModalDelete/modal-delete.component";
 
 export default function Accounts() {
   const { states, actions } = useAccounts();
@@ -30,7 +31,9 @@ export default function Accounts() {
               editAccount={() =>
                 actions.handleOpenEditModal({ accountData: account })
               }
-              deleteAccount={() => actions.handleOpenDeleteModal()}
+              deleteAccount={() =>
+                actions.handleOpenDeleteModal({ accountData: account })
+              }
             />
           </div>
         </SwiperSlide>
@@ -75,13 +78,22 @@ export default function Accounts() {
       />
 
       {states.accountData && (
-        <ModalEditAccount
-          isOpen={states.isEditModalOpen}
-          onOpenChange={states.onEditModalOpenChange}
-          userId={states.user.id}
-          accountData={states.accountData}
-          handleGetTransactions={states.handleGetAccounts.refetch}
-        />
+        <>
+          <ModalEditAccount
+            isOpen={states.isEditModalOpen}
+            onOpenChange={states.onEditModalOpenChange}
+            userId={states.user.id}
+            accountData={states.accountData}
+            handleGetTransactions={states.handleGetAccounts.refetch}
+          />
+
+          <ModalDelete
+            isOpen={states.isDeleteModalOpen}
+            onOpenChange={states.onDeleteModalOpenChange}
+            handleDelete={actions.deleteAccount}
+            title="Deseja deletar esta conta?"
+          />
+        </>
       )}
     </>
   );
