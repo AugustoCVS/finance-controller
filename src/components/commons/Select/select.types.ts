@@ -7,4 +7,5 @@ export type SelectProps = {
   errorMessage?: string;
   isInvalid?: boolean;
   children: React.ReactNode;
+  label: string;
 };

@@ -7,6 +7,7 @@ export const Select: React.FC<SelectProps> = ({
   errorMessage,
   isInvalid,
   children,
+  label,
 }) => {
   const invalid = !!errorMessage || isInvalid;
 
@@ -23,7 +24,7 @@ export const Select: React.FC<SelectProps> = ({
         `}
       >
         <option value="" disabled selected hidden>
-          Selecione uma opção
+          {label}
         </option>
         {children}
       </select>
