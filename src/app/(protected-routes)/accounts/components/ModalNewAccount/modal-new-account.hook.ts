@@ -7,7 +7,6 @@ import { ERROR_MESSAGE, SUCCESS_MESSAGE } from "./modal-new-account.constants";
 
 export const useModalNewAccount = ({
   handleGetTransactions,
-  isOpen,
   onOpenChange,
   userId,
 }: ModalNewAccountProps) => {
