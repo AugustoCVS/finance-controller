@@ -1,9 +1,11 @@
+import { priceFormatter } from "@/utils/formaters";
+import { CategoryList } from "@/utils/transactions";
 import { ApexOptions } from "apexcharts";
 import { BarChartsProps } from "./bar-charts.types";
 import { TransactionsProps } from "@/services/interfaces/transactions";
-import { priceFormatter } from "@/utils/formaters";
 
 export const useBarCharts = ({ transactions }: BarChartsProps) => {
+
   const calculateValuesByCategory = (
     transactions: TransactionsProps[]
   ): Record<string, number> => {
@@ -22,13 +24,19 @@ export const useBarCharts = ({ transactions }: BarChartsProps) => {
   const categories = Object.keys(valuesByCategory);
   const seriesData = Object.values(valuesByCategory);
 
+  const categoryColors = categories.map(category => {
+    const categoryItem = CategoryList.find(item => item.value === category);
+    return categoryItem ? categoryItem.color : "#000000";
+  });
+
   const chartsOptions = {
     series: [
       {
         name: "Despesas",
-        data: seriesData.map((value) => ({
-          x: categories[seriesData.indexOf(value)],
-          y: value,
+        data: categories.map((category, index) => ({
+          x: category,
+          y: seriesData[index],
+          fillColor: categoryColors[index],
         })),
       },
     ],
@@ -42,6 +50,7 @@ export const useBarCharts = ({ transactions }: BarChartsProps) => {
           borderRadius: 4,
           borderRadiusApplication: "end",
           horizontal: true,
+          distributed: true,
         },
       },
       dataLabels: {
@@ -55,9 +64,9 @@ export const useBarCharts = ({ transactions }: BarChartsProps) => {
           },
         },
       },
+      colors: categoryColors,
     } as ApexOptions,
   };
-
 
   return {
     states: {
