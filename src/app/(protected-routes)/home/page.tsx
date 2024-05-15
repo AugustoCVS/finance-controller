@@ -3,35 +3,22 @@
 import React from "react";
 
 import { useHome } from "./home.hook";
-import { BalanceCards } from "./components/BalanceCards/balance-cards.component";
 import { ButtonSection } from "./components/BalanceCards/components/ButtonSection/button-section.component";
-import { useSummary } from "@/utils/summary";
 import { ModalNewTransaction } from "./components/ModalNewTransaction/modal-new-transaction.component";
 import { ModalEditTransaction } from "./components/ModalEditTransaction/modal-edit-transaction.component";
 import { ModalDelete } from "@/components/commons/ModalDelete/modal-delete.component";
 import { TransactionCard } from "@/components/commons/TransactionCard/transaction-card.component";
 import { SkeletonTransactionCard } from "@/components/commons/SkeletonTransactionCard/skeleton-transaction-card.component";
+import { Balance } from "./components/Balance/balance.component";
 
 export default function HomePage() {
   const { states, actions } = useHome();
-  const { balanceList } = useSummary();
 
   return (
     <>
       <section className="w-full h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8">
         <ButtonSection onClick={actions.handleOpenNewModal} />
-        <div className="flex items-center justify-around mt-[-3rem] gap-12 ">
-          {balanceList.map((balance) => {
-            return (
-              <BalanceCards
-                key={balance.id}
-                balance={balance.value}
-                title={balance.title}
-                isLoading={states.isPending}
-              />
-            );
-          })}
-        </div>
+        <Balance isLoading={states.isPending} />
 
         <div className="flex flex-col items-center gap-1 mt-8 w-full px-12">
           <SkeletonTransactionCard isLoading={states.isPending} />
