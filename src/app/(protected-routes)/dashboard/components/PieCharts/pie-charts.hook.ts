@@ -1,8 +1,8 @@
 import { priceFormatter } from "@/utils/formaters";
-import { ChartsProps } from "./charts.types";
+import { PieChartsProps } from "./pie-charts.types";
 import { ApexOptions } from "apexcharts";
 
-export const useCharts = ({ expenseByBank, incomeByBank }: ChartsProps) => {
+export const usePieCharts = ({ expenseByBank, incomeByBank }: PieChartsProps) => {
   const totalIncome = Object.values(incomeByBank).reduce(
     (acc, val) => acc + val,
     0

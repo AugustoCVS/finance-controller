@@ -5,7 +5,7 @@ import { TransactionFiler } from "./components/TransactionFilter/transaction-fil
 import { useDashboard } from "./dashboard.hook";
 import { TransactionCard } from "@/components/commons/TransactionCard/transaction-card.component";
 import { SkeletonTransactionCard } from "@/components/commons/SkeletonTransactionCard/skeleton-transaction-card.component";
-import { Charts } from "./components/Charts/charts.component";
+import { PieCharts } from "./components/PieCharts/pie-charts.component";
 
 export default function Dashboard() {
   const { states, actions } = useDashboard();
@@ -34,7 +34,7 @@ export default function Dashboard() {
   return (
     <section className="h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8 overflow-hidden">
       <div className="w-full flex items-center justify-center pl-20">
-        <Charts
+        <PieCharts
           incomeByBank={states.incomeByBank}
           expenseByBank={states.expenseByBank}
         />

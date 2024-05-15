@@ -1,13 +1,13 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import { ChartsProps } from "./charts.types";
-import { useCharts } from "./charts.hook";
+import { PieChartsProps } from "./pie-charts.types";
+import { usePieCharts } from "./pie-charts.hook";
 
-export const Charts: React.FC<ChartsProps> = ({
+export const PieCharts: React.FC<PieChartsProps> = ({
   incomeByBank,
   expenseByBank,
 }) => {
-  const { states } = useCharts({ incomeByBank, expenseByBank });
+  const { states } = usePieCharts({ incomeByBank, expenseByBank });
 
   return (
     <div className="w-full items-center justify-center mt-1 flex gap-8">
