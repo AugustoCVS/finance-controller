@@ -1,4 +1,4 @@
 export type ChartsProps = {
-  labels: string[];
-  values: number[];
-};
+  incomeByBank: Record<string, number>;
+  expenseByBank: Record<string, number>;
+}

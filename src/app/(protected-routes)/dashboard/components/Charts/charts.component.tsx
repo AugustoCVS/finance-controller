@@ -1,47 +1,32 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import { ChartsProps } from "./charts.types";
+import { useCharts } from "./charts.hook";
 
-export const Charts: React.FC<ChartsProps> = ({ labels, values }) => {
-  const chartOptions = {
-    series: values,
-    options: {
-      chart: {
-        type: "donut" as const,
-        height: 400,
-      },
-      labels: labels,
-      plotOptions: {
-        pie: {
-          donut: {
-            size: "50%",
-          },
-        },
-      },
-      colors: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 300,
-            },
-            legend: {
-              position: "bottom" as const,
-            },
-          },
-        },
-      ],
-    },
-  };
+export const Charts: React.FC<ChartsProps> = ({
+  incomeByBank,
+  expenseByBank,
+}) => {
+  const { states } = useCharts({ incomeByBank, expenseByBank });
 
   return (
-    <div className="w-full max-w-[400px] mt-8">
-      <Chart
-        options={chartOptions.options}
-        series={chartOptions.series}
-        type="donut"
-      />
+    <div className="w-full items-center justify-center mt-1 flex gap-8">
+      <div className="w-full max-w-[500px] text-white">
+        <h2 className="text-white">Entradas</h2>
+        <Chart
+          options={states.incomeData.options}
+          series={states.incomeData.series}
+          type="donut"
+        />
+      </div>
+      <div className="w-full max-w-[500px] text-white">
+        <h2 className="text-white">Saídas</h2>
+        <Chart
+          options={states.expenseData.options}
+          series={states.expenseData.series}
+          type="donut"
+        />
+      </div>
     </div>
   );
 };

@@ -34,7 +34,10 @@ export default function Dashboard() {
   return (
     <section className="h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8 overflow-hidden">
       <div className="w-full flex items-center justify-center pl-20">
-        <Charts labels={states.banks} values={states.valuesByBank} />
+        <Charts
+          incomeByBank={states.incomeByBank}
+          expenseByBank={states.expenseByBank}
+        />
       </div>
       <div className="flex flex-col items-center justify-center mt-4 gap-4">
         <TransactionFiler

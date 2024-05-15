@@ -45,29 +45,38 @@ export const useDashboard = () => {
     });
   };
 
-  const transactions = getTransactions.data?.transactions || [];
-
-  const CalculateValuesByBank = transactions.reduce(
-    (acc: Record<string, number>, transaction: TransactionsProps) => {
+ 
+  const calculateValuesByBank = (
+    transactions: TransactionsProps[],
+    type: 'INCOME' | 'OUTCOME'
+  ) => {
+    return transactions.reduce((acc: Record<string, number>, transaction: TransactionsProps) => {
       if (!acc[transaction.accountName]) {
         acc[transaction.accountName] = 0;
       }
-      acc[transaction.accountName] += transaction.value;
+
+      if (type === 'INCOME' && transaction.value > 0) {
+        acc[transaction.accountName] += transaction.value;
+      } else if (type === 'OUTCOME' && transaction.value < 0) {
+        acc[transaction.accountName] += Math.abs(transaction.value);
+      }
+
       return acc;
-    },
-    {}
-  );
+    }, {});
+  };
 
-  const banks = Object.keys(CalculateValuesByBank);
-  const valuesByBank = Object.values(CalculateValuesByBank);
+  const transactions = getTransactions.data?.transactions || [];
 
+  const incomeByBank = calculateValuesByBank(transactions || [], 'INCOME');
+  const expenseByBank = calculateValuesByBank(transactions || [], 'OUTCOME');
+  
   return {
     states: {
       getTransactions,
       getAccounts,
       filter,
-      banks,
-      valuesByBank,
+      incomeByBank,
+      expenseByBank,
     },
     actions: {
       setFilter,
