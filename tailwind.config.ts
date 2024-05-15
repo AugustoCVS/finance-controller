@@ -41,8 +41,11 @@ const config: Config = {
       },
     },
     screens: {
+      xsm: '375px',
+      xsm1: '420px',
       sm: "480px", 
-      sm1: "640px",
+      sm1: '560px',
+      sm2: "640px",
       md: "768px",
       md1: "1024px",
       lg: "1280px",
