@@ -29,6 +29,7 @@ export const useCharts = ({ expenseByBank, incomeByBank }: ChartsProps) => {
         style: {
           colors: ["#FFFFFF"],
         },
+        formatter: (val) => priceFormatter.format(Number(val)),
       },
       plotOptions: {
         pie: {
@@ -42,6 +43,7 @@ export const useCharts = ({ expenseByBank, incomeByBank }: ChartsProps) => {
               value: {
                 show: true,
                 color: "#FFFFFF",
+                formatter: (val) => priceFormatter.format(Number(val)),
               },
               total: {
                 show: true,
@@ -80,6 +82,7 @@ export const useCharts = ({ expenseByBank, incomeByBank }: ChartsProps) => {
         style: {
           colors: ["#FFFFFF"],
         },
+        formatter: (val) => priceFormatter.format(Number(val)),
       },
       plotOptions: {
         pie: {
@@ -93,6 +96,7 @@ export const useCharts = ({ expenseByBank, incomeByBank }: ChartsProps) => {
               value: {
                 show: true,
                 color: "#FFFFFF",
+                formatter: (val) => priceFormatter.format(Number(val)),
               },
               total: {
                 show: true,
