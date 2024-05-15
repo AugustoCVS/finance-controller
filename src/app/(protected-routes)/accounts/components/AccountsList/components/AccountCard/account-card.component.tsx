@@ -13,7 +13,7 @@ export const AccountCard: React.FC<AccountCardProps> = ({
   editAccount,
 }) => {
   return (
-    <div className="w-[44rem] flex flex-col items-center rounded-2xl p-8 bg-gray-600">
+    <div className="xsm:w-[16rem] sm:w-[24rem] md1:w-[44rem] flex flex-col items-center rounded-2xl p-8 bg-gray-600">
       <Title text={name} />
       <Content
         accountType={accountType}

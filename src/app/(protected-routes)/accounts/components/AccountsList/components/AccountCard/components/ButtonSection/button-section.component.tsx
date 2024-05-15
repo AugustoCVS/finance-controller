@@ -6,7 +6,7 @@ export const ButtonSection: React.FC<ButtonSectionProps> = ({
   editAccount,
 }) => {
   return (
-    <div className="w-full flex items-center gap-12">
+    <div className="w-full flex items-center xsm:gap-2 sm:gap-12">
       <Button
         onClick={editAccount}
         className="w-full items-center justify-center p-3 border bg-green-300 text-gray-100 font-regular hover:bg-green-500 rounded-lg border-none"

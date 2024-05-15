@@ -25,7 +25,7 @@ export default function Accounts() {
             handleOpenEditModal={actions.handleOpenEditModal}
           />
         )}
-        <div className="pl-12 mt-8 w-2/6">
+        <div className="pl-12 mt-8 xsm:w-full md:w-2/6">
           <Button
             className="w-full items-center justify-center p-3 border bg-green-300 text-gray-100 font-regular hover:bg-green-500 rounded-lg border-none"
             onClick={actions.handleOpenNewAccountModal}
