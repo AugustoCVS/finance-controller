@@ -55,7 +55,6 @@ export const usePieCharts = ({ transactions }: PieChartsProps) => {
         style: {
           colors: ["#FFFFFF"],
         },
-        formatter: (val) => priceFormatter.format(Number(val)),
       },
       plotOptions: {
         pie: {
@@ -108,7 +107,6 @@ export const usePieCharts = ({ transactions }: PieChartsProps) => {
         style: {
           colors: ["#FFFFFF"],
         },
-        formatter: (val) => priceFormatter.format(Number(val)),
       },
       plotOptions: {
         pie: {
