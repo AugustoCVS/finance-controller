@@ -34,7 +34,7 @@ export default function Dashboard() {
 
   return (
     <section className="h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8 overflow-hidden">
-      <div className="w-full flex items-center justify-center gap-12 px-12">
+      <div className="w-full flex flex-col xl1:flex-row items-center justify-center gap-12 px-12">
         <PieCharts
           transactions={states.transactions}
           isLoading={states.getTransactions.isLoading}
@@ -44,7 +44,7 @@ export default function Dashboard() {
           isLoading={states.getTransactions.isLoading}
         />
       </div>
-      <div className="flex flex-col items-center justify-center mt-4 gap-4">
+      <div className="flex flex-col items-center justify-center mt-4 gap-4 px-4">
         <TransactionFiler
           accounts={states.getAccounts.data}
           setFilter={actions.setFilter}

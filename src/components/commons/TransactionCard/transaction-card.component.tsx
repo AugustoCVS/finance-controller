@@ -14,7 +14,7 @@ export const TransactionCard: React.FC<TransactionProps> = ({
   shouldHideButtons,
 }) => {
   return (
-    <div className="xsm:w-60 sm:w-full grid grid-cols-1 gap-4 sm:grid-cols-2 sm2:grid-cols-3 md1:flex md1:items-center md1:justify-between bg-gray-600 py-5 px-8 rounded-md">
+    <div className="xsm:w-60 sm:w-full grid grid-cols-1 gap-4 sm:grid-cols-2 sm2:grid-cols-3 md2:flex md2:items-center md2:justify-between bg-gray-600 py-5 px-8 rounded-md">
       <Text text={title} />
       <Value value={value} />
       <Text text={accountName} />

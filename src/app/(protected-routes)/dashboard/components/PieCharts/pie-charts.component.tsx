@@ -12,7 +12,7 @@ export const PieCharts: React.FC<PieChartsProps> = ({
 
   if (isLoading) {
     return (
-      <div className="w-full items-center justify-center mt-1 flex gap-8">
+      <div className="w-full items-center justify-center mt-1 hidden sm1:flex flex-col md1:flex-row gap-8">
         <SkeletonComponent
           height={350}
           width={350}
@@ -34,8 +34,8 @@ export const PieCharts: React.FC<PieChartsProps> = ({
   if (transactions.length === 0 && !isLoading) return null;
 
   return (
-    <div className="w-full items-center justify-center mt-1 flex gap-8">
-      <div className="w-full max-w-[500px]">
+    <div className="w-full items-center justify-center mt-1 hidden sm1:flex flex-col md1:flex-row gap-8">
+      <div className="w-full max-w-[400px] md1:max-w-[500px]">
         <h2 className="text-white">Entradas</h2>
         <Chart
           options={states.incomeData.options}
@@ -43,7 +43,7 @@ export const PieCharts: React.FC<PieChartsProps> = ({
           type="donut"
         />
       </div>
-      <div className="w-full max-w-[500px]">
+      <div className="w-full max-w-[400px] md1:max-w-[500px]">
         <h2 className="text-white">Saídas</h2>
         <Chart
           options={states.expenseData.options}

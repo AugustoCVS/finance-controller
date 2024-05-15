@@ -13,7 +13,7 @@ export const BarCharts: React.FC<BarChartsProps> = ({
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full hidden sm1:flex">
         <SkeletonComponent
           height={350}
           width="100%"
@@ -28,8 +28,8 @@ export const BarCharts: React.FC<BarChartsProps> = ({
   if (transactions.length === 0 && !isLoading) return null;
 
   return (
-    <div className="w-full">
-      <div id="chart">
+    <div className="w-full hidden sm1:flex">
+      <div className="w-full">
         <Chart
           options={states.chartsOptions.options}
           series={states.chartsOptions.series}
@@ -37,7 +37,6 @@ export const BarCharts: React.FC<BarChartsProps> = ({
           height={350}
         />
       </div>
-      <div id="html-dist"></div>
     </div>
   );
 };

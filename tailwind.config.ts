@@ -47,9 +47,11 @@ const config: Config = {
       sm1: '560px',
       sm2: "640px",
       md: "768px",
-      md1: "1024px",
+      md1: "900px",
+      md2: "1024px",
       lg: "1280px",
       xl: "1536px",
+      xl1: "1920px"
     }
   },
   darkMode: "class",
