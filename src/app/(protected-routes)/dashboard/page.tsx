@@ -6,6 +6,7 @@ import { useDashboard } from "./dashboard.hook";
 import { TransactionCard } from "@/components/commons/TransactionCard/transaction-card.component";
 import { SkeletonTransactionCard } from "@/components/commons/SkeletonTransactionCard/skeleton-transaction-card.component";
 import { PieCharts } from "./components/PieCharts/pie-charts.component";
+import { BarCharts } from "./components/BarCharts/bar-charts.component";
 
 export default function Dashboard() {
   const { states, actions } = useDashboard();
@@ -33,11 +34,9 @@ export default function Dashboard() {
 
   return (
     <section className="h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8 overflow-hidden">
-      <div className="w-full flex items-center justify-center pl-20">
-        <PieCharts
-          incomeByBank={states.incomeByBank}
-          expenseByBank={states.expenseByBank}
-        />
+      <div className="w-full flex items-center justify-center gap-12 px-12">
+        <PieCharts transactions={states.transactions} />
+        <BarCharts transactions={states.transactions} />
       </div>
       <div className="flex flex-col items-center justify-center mt-4 gap-4">
         <TransactionFiler
