@@ -35,8 +35,14 @@ export default function Dashboard() {
   return (
     <section className="h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8 overflow-hidden">
       <div className="w-full flex items-center justify-center gap-12 px-12">
-        <PieCharts transactions={states.transactions} />
-        <BarCharts transactions={states.transactions} />
+        <PieCharts
+          transactions={states.transactions}
+          isLoading={states.getTransactions.isLoading}
+        />
+        <BarCharts
+          transactions={states.transactions}
+          isLoading={states.getTransactions.isLoading}
+        />
       </div>
       <div className="flex flex-col items-center justify-center mt-4 gap-4">
         <TransactionFiler
