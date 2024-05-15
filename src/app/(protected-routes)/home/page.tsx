@@ -3,13 +3,13 @@
 import React from "react";
 
 import { useHome } from "./home.hook";
-import { ButtonSection } from "./components/BalanceCards/components/ButtonSection/button-section.component";
 import { ModalNewTransaction } from "./components/ModalNewTransaction/modal-new-transaction.component";
 import { ModalEditTransaction } from "./components/ModalEditTransaction/modal-edit-transaction.component";
 import { ModalDelete } from "@/components/commons/ModalDelete/modal-delete.component";
 import { TransactionCard } from "@/components/commons/TransactionCard/transaction-card.component";
 import { SkeletonTransactionCard } from "@/components/commons/SkeletonTransactionCard/skeleton-transaction-card.component";
 import { Balance } from "./components/Balance/balance.component";
+import { ButtonSection } from "./components/Balance/components/BalanceCards/components/ButtonSection/button-section.component";
 
 export default function HomePage() {
   const { states, actions } = useHome();

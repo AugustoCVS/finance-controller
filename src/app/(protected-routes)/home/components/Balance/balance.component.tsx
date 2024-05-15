@@ -34,7 +34,7 @@ export const Balance: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
     return balanceList.map((balance) => {
       return (
         <div>
-          <SwiperSlide>
+          <SwiperSlide key={balance.id}>
             <div className="w-full flex items-center justify-center">
               <BalanceCards
                 key={balance.id}
