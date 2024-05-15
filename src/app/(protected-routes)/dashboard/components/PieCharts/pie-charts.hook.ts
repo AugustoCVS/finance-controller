@@ -1,8 +1,34 @@
 import { priceFormatter } from "@/utils/formaters";
 import { PieChartsProps } from "./pie-charts.types";
 import { ApexOptions } from "apexcharts";
+import { TransactionsProps } from "@/services/interfaces/transactions";
 
-export const usePieCharts = ({ expenseByBank, incomeByBank }: PieChartsProps) => {
+export const usePieCharts = ({ transactions }: PieChartsProps) => {
+  const calculateValuesByBank = (
+    transactions: TransactionsProps[],
+    type: "INCOME" | "OUTCOME"
+  ) => {
+    return transactions.reduce(
+      (acc: Record<string, number>, transaction: TransactionsProps) => {
+        if (!acc[transaction.accountName]) {
+          acc[transaction.accountName] = 0;
+        }
+
+        if (type === "INCOME" && transaction.value > 0) {
+          acc[transaction.accountName] += transaction.value;
+        } else if (type === "OUTCOME" && transaction.value < 0) {
+          acc[transaction.accountName] += Math.abs(transaction.value);
+        }
+
+        return acc;
+      },
+      {}
+    );
+  };
+
+  const incomeByBank = calculateValuesByBank(transactions || [], "INCOME");
+  const expenseByBank = calculateValuesByBank(transactions || [], "OUTCOME");
+
   const totalIncome = Object.values(incomeByBank).reduce(
     (acc, val) => acc + val,
     0

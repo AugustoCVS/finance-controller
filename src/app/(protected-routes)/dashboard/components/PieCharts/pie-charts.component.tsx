@@ -3,11 +3,8 @@ import Chart from "react-apexcharts";
 import { PieChartsProps } from "./pie-charts.types";
 import { usePieCharts } from "./pie-charts.hook";
 
-export const PieCharts: React.FC<PieChartsProps> = ({
-  incomeByBank,
-  expenseByBank,
-}) => {
-  const { states } = usePieCharts({ incomeByBank, expenseByBank });
+export const PieCharts: React.FC<PieChartsProps> = ({ transactions }) => {
+  const { states } = usePieCharts({ transactions });
 
   return (
     <div className="w-full items-center justify-center mt-1 flex gap-8">

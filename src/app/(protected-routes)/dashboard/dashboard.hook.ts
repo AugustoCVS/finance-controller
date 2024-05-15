@@ -45,38 +45,14 @@ export const useDashboard = () => {
     });
   };
 
- 
-  const calculateValuesByBank = (
-    transactions: TransactionsProps[],
-    type: 'INCOME' | 'OUTCOME'
-  ) => {
-    return transactions.reduce((acc: Record<string, number>, transaction: TransactionsProps) => {
-      if (!acc[transaction.accountName]) {
-        acc[transaction.accountName] = 0;
-      }
-
-      if (type === 'INCOME' && transaction.value > 0) {
-        acc[transaction.accountName] += transaction.value;
-      } else if (type === 'OUTCOME' && transaction.value < 0) {
-        acc[transaction.accountName] += Math.abs(transaction.value);
-      }
-
-      return acc;
-    }, {});
-  };
-
   const transactions = getTransactions.data?.transactions || [];
-
-  const incomeByBank = calculateValuesByBank(transactions || [], 'INCOME');
-  const expenseByBank = calculateValuesByBank(transactions || [], 'OUTCOME');
   
   return {
     states: {
       getTransactions,
       getAccounts,
       filter,
-      incomeByBank,
-      expenseByBank,
+      transactions,
     },
     actions: {
       setFilter,
