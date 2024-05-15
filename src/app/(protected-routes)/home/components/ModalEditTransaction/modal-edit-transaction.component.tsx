@@ -133,6 +133,9 @@ export const ModalEditTransaction: React.FC<ModalEditTransactionProps> = ({
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       className="w-[32rem] bg-gray-700 rounded-lg"
+      style={{
+        marginTop: 200,
+      }}
     >
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1 text-gray-100">
