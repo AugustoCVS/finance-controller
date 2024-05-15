@@ -4,6 +4,7 @@ export type TransactionProps = {
   accountName: string;
   category: string;
   date: Date;
-  edit: () => void;
-  remove: () => void;
+  shouldHideButtons?: boolean;
+  edit?: () => void;
+  remove?: () => void;
 }
