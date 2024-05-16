@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Chart from "react-apexcharts";
 
@@ -30,12 +32,14 @@ export const BarCharts: React.FC<BarChartsProps> = ({
   return (
     <div className="w-full hidden sm1:flex">
       <div className="w-full">
-        <Chart
-          options={states.chartsOptions.options}
-          series={states.chartsOptions.series}
-          type="bar"
-          height={350}
-        />
+        {typeof window !== "undefined" && (
+          <Chart
+            options={states.chartsOptions.options}
+            series={states.chartsOptions.series}
+            type="bar"
+            height={350}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,30 @@
 "use client";
+import dynamic from "next/dynamic";
 
 import { Button } from "@/components/commons/Button/button.component";
 import { TransactionFiler } from "./components/TransactionFilter/transaction-filter.component";
 import { useDashboard } from "./dashboard.hook";
 import { TransactionCard } from "@/components/commons/TransactionCard/transaction-card.component";
 import { SkeletonTransactionCard } from "@/components/commons/SkeletonTransactionCard/skeleton-transaction-card.component";
-import { PieCharts } from "./components/PieCharts/pie-charts.component";
-import { BarCharts } from "./components/BarCharts/bar-charts.component";
+
+const DynamicPieCharts = dynamic(
+  () =>
+    import("./components/PieCharts/pie-charts.component").then(
+      (mod) => mod.PieCharts
+    ),
+  {
+    ssr: false,
+  }
+);
+const DynamicBarCharts = dynamic(
+  () =>
+    import("./components/BarCharts/bar-charts.component").then(
+      (mod) => mod.BarCharts
+    ),
+  {
+    ssr: false,
+  }
+);
 
 export default function Dashboard() {
   const { states, actions } = useDashboard();
@@ -35,11 +53,11 @@ export default function Dashboard() {
   return (
     <section className="h-full min-h-screen flex flex-col items-center bg-gray-800 pl-20 pb-8 overflow-hidden">
       <div className="w-full flex flex-col xl1:flex-row items-center justify-center gap-12 px-12">
-        <PieCharts
+        <DynamicPieCharts
           transactions={states.transactions}
           isLoading={states.getTransactions.isLoading}
         />
-        <BarCharts
+        <DynamicBarCharts
           transactions={states.transactions}
           isLoading={states.getTransactions.isLoading}
         />
