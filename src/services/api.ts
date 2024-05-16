@@ -4,8 +4,7 @@ import { requestInterceptor } from "./interceptors/RequestInterceptor";
 import { AuthService } from "./auth";
 import { getRefreshTokenId, saveUserInfoOnSessionCookies } from "@/utils/auth";
 
-//TODO: ADD BASE URL NO .ENV
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = process.env.BASE_URL;
 
 const api = axios.create({
   baseURL: BASE_URL,
