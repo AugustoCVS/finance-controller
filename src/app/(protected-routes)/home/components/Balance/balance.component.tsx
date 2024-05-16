@@ -36,11 +36,7 @@ export const Balance: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
         <div>
           <SwiperSlide key={balance.id}>
             <div className="w-full flex items-center justify-center">
-              <BalanceCards
-                key={balance.id}
-                balance={balance.value}
-                title={balance.title}
-              />
+              <BalanceCards balance={balance.value} title={balance.title} />
             </div>
           </SwiperSlide>
         </div>
