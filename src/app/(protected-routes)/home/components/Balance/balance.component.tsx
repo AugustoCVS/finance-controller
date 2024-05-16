@@ -33,13 +33,11 @@ export const Balance: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
   const renderBalanceCards = () => {
     return balanceList.map((balance) => {
       return (
-        <div>
-          <SwiperSlide key={balance.id}>
-            <div className="w-full flex items-center justify-center">
-              <BalanceCards balance={balance.value} title={balance.title} />
-            </div>
-          </SwiperSlide>
-        </div>
+        <SwiperSlide key={balance.id}>
+          <div className="w-full flex items-center justify-center">
+            <BalanceCards balance={balance.value} title={balance.title} />
+          </div>
+        </SwiperSlide>
       );
     });
   };
