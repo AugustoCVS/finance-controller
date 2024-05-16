@@ -13,7 +13,13 @@ export const Options: React.FC = () => {
         onClick={() => actions.handleNavigate({ screenName: "home" })}
       />
     ),
-    resumo: <LayoutDashboard color="white" className="w-6 h-6" />,
+    resumo: (
+      <LayoutDashboard
+        color="white"
+        className="w-6 h-6"
+        onClick={() => actions.handleNavigate({ screenName: "dashboard" })}
+      />
+    ),
     contas: (
       <Wallet
         color="white"
