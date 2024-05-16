@@ -2,7 +2,7 @@ import axios from "axios";
 import { responseInterceptor } from "./interceptors/ResponseInterceptor";
 import { errorInterceptor } from "./interceptors/ErrorInterceptor";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = "https://backend-finance-controller.vercel.app";
 
 const apiAuth = axios.create({
   baseURL: BASE_URL,

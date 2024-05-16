@@ -4,7 +4,7 @@ import { requestInterceptor } from "./interceptors/RequestInterceptor";
 import { AuthService } from "./auth";
 import { getRefreshTokenId, saveUserInfoOnSessionCookies } from "@/utils/auth";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = "https://backend-finance-controller.vercel.app"
 
 const api = axios.create({
   baseURL: BASE_URL,
